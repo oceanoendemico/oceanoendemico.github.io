@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Océano Endémico</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- ANIMATE.CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>  
+    
+    <!-- AOS Animate On Scroll -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/contacto.css">
+    
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">🌊 Océano Endémico</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../html/especies.html">Especies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../html/problemas.html">Problemas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../html/juegos.html">Juegos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../html/contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../html/ayuda.html">Ayuda</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- HERO -->
+<section class="contact-hero" data-aos="fade-up">
+    <img src="../img/pez.png" class="float-fish fish2" alt="">
+    <img src="../img/medusa.png" class="float-fish fish1" alt="">
+    <img src="../img/tortuga-png.png" class="float-fish fish3" alt="">
+    <div class="bubble bubble1"></div>
+    <div class="bubble bubble2"></div>
+    <div class="bubble bubble3"></div>
+    <div class="container text-center">
+        <h1>Contáctanos</h1>
+        <p>Ayúdanos a proteger las especies marinas de México.</p>
+    </div>
+</section>
+    
+    
+    <!-- CONTACTO -->
+<section class="contact-section">
+    <div class="container">
+        <img src="../img/coral.png" class="coral-decoration" alt="">
+        <div class="row g-5 align-items-center">
+
+            <!-- INFO -->
+            <div class="col-lg-5">
+                <div class="contact-info-card" data-aos="fade-right">
+                    <h2>Información</h2>
+                    <div class="contact-item">
+                        <i class="bi bi-envelope-fill"></i>
+                        <div>
+                            <h5>Correo</h5>
+                            <p>oceanoendemico@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="bi bi-telephone-fill"></i>
+                        <div>
+                            <h5>Teléfono</h5>
+                            <p>+52 222 000 0000</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <div>
+                            <h5>Ubicación</h5>
+                            <p>Puebla, México</p>
+                        </div>
+                    </div>
+
+                    <div class="social-icons">
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORM -->
+            <div class="col-lg-7">
+                <form class="contact-form" data-aos="fade-left">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label>Nombre</label>
+                            <input type="text" id="nombre" class="form-control">
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <label>Correo electrónico</label>
+                            <input type="email" id="correo" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label>Asunto</label>
+                        <input type="text" id="asunto" class="form-control">
+                    </div>
+
+                    <div class="mb-4">
+                        <label>Mensaje</label>
+                        <textarea class="form-control" id="mensaje" rows="6"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn hero-btn btn-lg">
+                        Enviar mensaje
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    
+    <!-- FOOTER -->
+    <footer class="footer-ocean">
+    <div class="container">
+        <div class="row gy-5">
+            <!-- Marca -->
+            <div class="col-lg-4" data-aos="fade-up">
+                <h3 class="footer-logo">🌊 Océano Endémico</h3>
+                <p class="footer-text">
+                    Proyecto dedicado a la difusión y conservación
+                    de las especies marinas de México.
+                </p>
+            </div>
+
+            <!-- Navegación -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="150">
+                <h4 class="footer-title">Explorar</h4>
+                <ul class="footer-links">
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="../html/especies.html">Especies</a></li>
+                    <li><a href="../html/problemas.html">Problemáticas</a></li>
+                    <li><a href="../html/juegos.html">Juegos</a></li>
+                    <li><a href="../html/contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+
+            <!-- Redes -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                <h4 class="footer-title">Síguenos</h4>
+                <div class="footer-social">
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-youtube"></i></a>
+                    <a href=""><i class="bi bi-twitter-x"></i></a>
+                </div>
+                <p class="footer-copy">
+                    © 2026 Océano Endémico <br>
+                    Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- SCRIPT BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+    AOS.init({
+        duration: 1200,
+        once: true
+    });
+</script>
+    </body>
+</html>

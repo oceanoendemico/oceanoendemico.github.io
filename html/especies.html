@@ -1,0 +1,2010 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Océano Endémico</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        /* ===== VARIABLES EXTRA ESPECIES ===== */
+        :root {
+            --vaquita: #ff6b6b;
+            --tortuga: #ffd166;
+            --caballito: #06d6a0;
+            --tiburon: #118ab2;
+            --lobo: #a855f7;
+
+            --status-critico: #ef4444;
+            --status-peligro: #f97316;
+            --status-vulnerable: #eab308;
+            --status-menor: #22c55e;
+        }
+
+        /* ===== HERO ESPECIES ===== */
+        .hero-especies {
+            background: linear-gradient(135deg, #023e8a, #0096c7, #48cae4);
+            min-height: 45vh;
+            display: flex;
+            align-items: center;
+            padding-top: 90px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-especies::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.15) 2px, transparent 2px);
+            background-size: 38px 38px;
+            z-index: 1;
+        }
+
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .hero-especies-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-especies-content h1 {
+            font-family: "Fredoka", sans-serif;
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .hero-especies-content p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto 20px;
+            opacity: 0.95;
+        }
+
+        .bubble-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(6px);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50px;
+            padding: 8px 22px;
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        /* Burbujas decorativas */
+        .burbuja {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            animation: flotar-burbuja 6s ease-in-out infinite;
+        }
+
+        .burbuja:nth-child(1) {
+            width: 90px;
+            height: 90px;
+            top: 15%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .burbuja:nth-child(2) {
+            width: 55px;
+            height: 55px;
+            top: 60%;
+            left: 12%;
+            animation-delay: 1.5s;
+        }
+
+        .burbuja:nth-child(3) {
+            width: 70px;
+            height: 70px;
+            top: 25%;
+            right: 8%;
+            animation-delay: 0.8s;
+        }
+
+        .burbuja:nth-child(4) {
+            width: 40px;
+            height: 40px;
+            bottom: 20%;
+            right: 18%;
+            animation-delay: 2s;
+        }
+
+        .burbuja:nth-child(5) {
+            width: 110px;
+            height: 110px;
+            bottom: 10%;
+            left: 35%;
+            animation-delay: 1s;
+        }
+
+        @keyframes flotar-burbuja {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-18px) scale(1.05);
+            }
+        }
+
+        /* ===== FILTROS DE ESPECIE ===== */
+        .filtros-section {
+            background: #f5f7fb;
+            padding: 40px 0 10px;
+        }
+
+        .filtros-wrap {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-filtro {
+            background: white;
+            border: 3px solid #e0e7ef;
+            border-radius: 50px;
+            padding: 10px 24px;
+            font-family: "Fredoka", sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #072142;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-filtro:hover,
+        .btn-filtro.activo {
+            background: #0096c7;
+            border-color: #0096c7;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 150, 199, 0.3);
+        }
+
+        /* ===== INTRODUCCION ===== */
+        .intro-endemicas {
+            background: #f5f7fb;
+            padding: 60px 0 30px;
+        }
+
+        .intro-card {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .intro-icono {
+            width: 110px;
+            height: 110px;
+            min-width: 110px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0096c7, #48cae4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .intro-texto h2 {
+            font-family: "Fredoka", sans-serif;
+            font-size: 2rem;
+            color: #072142;
+            margin-bottom: 12px;
+        }
+
+        .intro-texto p {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ===== SECCIÓN ESPECIES ===== */
+        .especies-section {
+            padding: 60px 0 100px;
+            background: #f5f7fb;
+        }
+
+        .titulo-seccion {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .titulo-seccion h2 {
+            font-family: "Fredoka", sans-serif;
+            font-size: 3rem;
+            color: #072142;
+            margin-bottom: 10px;
+        }
+
+        .titulo-seccion p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        /* ===== TARJETA ESPECIE ===== */
+        .especie-card {
+            background: white;
+            border-radius: 35px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .especie-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.18);
+        }
+
+        /* Banda de color superior por especie */
+        .especie-card-header {
+            padding: 22px 25px 15px;
+            position: relative;
+        }
+
+        .especie-card[data-especie="vaquita"] .especie-card-header {
+            background: var(--vaquita);
+        }
+
+        .especie-card[data-especie="tortuga"] .especie-card-header {
+            background: var(--tortuga);
+        }
+
+        .especie-card[data-especie="caballito"] .especie-card-header {
+            background: var(--caballito);
+        }
+
+        .especie-card[data-especie="tiburon"] .especie-card-header {
+            background: var(--tiburon);
+        }
+
+        .especie-card[data-especie="lobo"] .especie-card-header {
+            background: var(--lobo);
+        }
+
+        .especie-emoji {
+            font-size: 3.5rem;
+            line-height: 1;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .especie-card-header h3 {
+            font-family: "Fredoka", sans-serif;
+            font-size: 1.7rem;
+            color: white;
+            margin: 0;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .nombre-cientifico {
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.88);
+            font-style: italic;
+            margin: 2px 0 0;
+        }
+
+        /* Foto de la especie */
+        .especie-img-wrap {
+            height: 210px;
+            overflow: hidden;
+        }
+
+        .especie-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .especie-card:hover .especie-img-wrap img {
+            transform: scale(1.07);
+        }
+
+        /* Cuerpo de la tarjeta */
+        .especie-body {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        /* Badge estado de conservación */
+        .estado-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 50px;
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-family: "Fredoka", sans-serif;
+            color: white;
+        }
+
+        .estado-critico {
+            background: var(--status-critico);
+        }
+
+        .estado-peligro {
+            background: var(--status-peligro);
+        }
+
+        .estado-vulnerable {
+            background: var(--status-vulnerable);
+            color: #1a1a1a;
+        }
+
+        .estado-menor {
+            background: var(--status-menor);
+        }
+
+        /* Filas de información */
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        .info-row .info-icon {
+            font-size: 1.3rem;
+            min-width: 26px;
+            text-align: center;
+            margin-top: 1px;
+        }
+
+        .info-label {
+            font-weight: 800;
+            color: #072142;
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 2px;
+        }
+
+        /* Tags de amenazas */
+        .amenazas-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .amenaza-tag {
+            background: #fff0f0;
+            color: #c0392b;
+            border-radius: 20px;
+            padding: 3px 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border: 1.5px solid #ffd5d2;
+        }
+
+        /* Botón ver más / video */
+        .btn-especie {
+            border: none;
+            border-radius: 50px;
+            padding: 12px 28px;
+            font-family: "Fredoka", sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .especie-card[data-especie="vaquita"] .btn-especie {
+            background: var(--vaquita);
+        }
+
+        .especie-card[data-especie="tortuga"] .btn-especie {
+            background: #e6a800;
+        }
+
+        .especie-card[data-especie="caballito"] .btn-especie {
+            background: var(--caballito);
+        }
+
+        .especie-card[data-especie="tiburon"] .btn-especie {
+            background: var(--tiburon);
+        }
+
+        .especie-card[data-especie="lobo"] .btn-especie {
+            background: var(--lobo);
+        }
+
+        .btn-especie:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            filter: brightness(1.08);
+        }
+
+        /* ===== DIVISOR ONDAS ===== */
+        .onda-divisor {
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            margin-top: -2px;
+        }
+
+        .onda-divisor svg {
+            display: block;
+        }
+
+        /* ===== MODAL ESPECIE ===== */
+        .modal-especie .modal-content {
+            border-radius: 30px;
+            overflow: hidden;
+            border: none;
+        }
+
+        .modal-especie .modal-header {
+            border: none;
+            padding: 22px 28px 14px;
+        }
+
+        .modal-especie .modal-title {
+            font-family: "Fredoka", sans-serif;
+            font-size: 1.6rem;
+            color: white;
+        }
+
+        .modal-especie .btn-close {
+            filter: brightness(0) invert(1);
+        }
+
+        .modal-especie[data-especie="vaquita"] .modal-header {
+            background: var(--vaquita);
+        }
+
+        .modal-especie[data-especie="tortuga"] .modal-header {
+            background: var(--tortuga);
+        }
+
+        .modal-especie[data-especie="caballito"] .modal-header {
+            background: var(--caballito);
+        }
+
+        .modal-especie[data-especie="tiburon"] .modal-header {
+            background: var(--tiburon);
+        }
+
+        .modal-especie[data-especie="lobo"] .modal-header {
+            background: var(--lobo);
+        }
+
+        .modal-especie[data-especie="tortuga"] .modal-title {
+            color: #072142;
+        }
+
+        .modal-especie[data-especie="tortuga"] .btn-close {
+            filter: none;
+        }
+
+        .modal-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            padding: 24px;
+        }
+
+        .modal-info-chip {
+            background: #f5f7fb;
+            border-radius: 18px;
+            padding: 16px 18px;
+        }
+
+        .modal-info-chip span {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 800;
+            color: #0096c7;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .modal-info-chip p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        /* ===== CONTADOR ESPECIES ===== */
+        .contador-section {
+            background: linear-gradient(135deg, #072142, #023e8a);
+            padding: 70px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contador-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.07) 2px, transparent 2px);
+            background-size: 30px 30px;
+        }
+
+        .contador-grid {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contador-item {
+            text-align: center;
+        }
+
+        .contador-num {
+            font-family: "Fredoka", sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #ffb703;
+            display: block;
+            line-height: 1;
+        }
+
+        .contador-label {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin-top: 6px;
+        }
+
+        /* ===== TIPS CONSERVACIÓN ===== */
+        .tips-section {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .tip-card {
+            background: #f5f7fb;
+            border-radius: 25px;
+            padding: 30px 25px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .tip-icono {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .tip-card h4 {
+            font-family: "Fredoka", sans-serif;
+            font-size: 1.3rem;
+            color: #072142;
+            margin-bottom: 10px;
+        }
+
+        .tip-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ===== ACCORDION ESPECIE ===== */
+        .accordion-especies .accordion-item {
+            border: none;
+            border-radius: 22px !important;
+            overflow: hidden;
+            margin-bottom: 16px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+        }
+
+        .accordion-especies .accordion-button {
+            font-family: "Fredoka", sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #072142;
+            background: white;
+            padding: 20px 26px;
+            box-shadow: none;
+        }
+
+        .accordion-especies .accordion-button:not(.collapsed) {
+            background: #0096c7;
+            color: white;
+        }
+
+        .accordion-especies .accordion-button:focus {
+            box-shadow: none;
+        }
+
+        .accordion-especies .accordion-body {
+            background: white;
+            padding: 20px 26px;
+            font-size: 0.97rem;
+            color: #555;
+            line-height: 1.75;
+        }
+
+        .accordion-especies .accordion-button::after {
+            filter: brightness(0) invert(1);
+        }
+
+        .accordion-especies .accordion-button.collapsed::after {
+            filter: none;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero-especies-content h1 {
+                font-size: 2.6rem;
+            }
+
+            .intro-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .modal-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contador-grid {
+                gap: 28px;
+            }
+
+            .contador-num {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-especies-content h1 {
+                font-size: 2rem;
+            }
+
+            .especie-card-header h3 {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* ===== SINGLE VIEW ============ */
+        #single-view-container {
+            position: relative;
+            width: 100%;
+            min-height: 80vh;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            transition: background-image 0.5s ease;
+        }
+
+        .sv-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(7, 33, 66, 0.95) 0%, rgba(7, 33, 66, 0.3) 100%);
+            z-index: 1;
+        }
+
+        #single-view-container .container {
+            z-index: 2;
+        }
+
+        .sv-glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 1200px;
+            color: white;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .sv-emoji {
+            font-size: 4.5rem;
+            line-height: 1;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .sv-glass-card h3 {
+            font-family: "Fredoka", sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            color: white;
+        }
+
+        #sv-cientifico {
+            font-size: 1.15rem;
+            font-style: italic;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .sv-divider {
+            border-color: rgba(255, 255, 255, 0.3);
+            margin: 20px 0;
+        }
+
+        .sv-text {
+            font-size: 2.1rem;
+            line-height: 1.6;
+            opacity: 0.95;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .sv-overlay {
+                background: linear-gradient(to bottom, rgba(7, 33, 66, 0.95) 0%, rgba(7, 33, 66, 0.4) 100%);
+            }
+
+            .sv-glass-card h3 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* ===== MARQUEE (CINTA EN LOOP) ===== */
+        .marquee-wrapper {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            z-index: 2;
+            padding: 20px 0;
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        }
+
+        .marquee-content {
+            display: flex;
+            width: max-content;
+            animation: scroll-left 40s linear infinite;
+            gap: 50px;
+        }
+
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ===== IMAGEN FLOTANTE SINGLE VIEW ===== */
+        @keyframes floatAnim {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes floatAnimMore {
+            0% {
+                transform: translateY(0px) rotate(-2deg);
+            }
+
+            50% {
+                transform: translateY(-35px) rotate(3deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(-2deg);
+            }
+        }
+
+        .sv-floating-img {
+            position: absolute;
+            bottom: 5%;
+            right: 5%;
+            width: 400px;
+            height: auto;
+            z-index: 10;
+            animation: floatAnim 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .floating-section-img {
+            position: absolute;
+            z-index: 10;
+            animation: floatAnimMore 5s ease-in-out infinite;
+            pointer-events: none;
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.15));
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============ NAVBAR ============ -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Guardianes Marinos</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../html/especies.html">Especies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../html/problemas.html">Problemas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../html/juegos.html">Juegos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../html/contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../html/ayuda.html">Ayuda</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============ HERO ESPECIES ============ -->
+    <header class="hero-especies">
+        <video autoplay loop muted playsinline class="hero-video-bg">
+            <source src="https://www.pexels.com/es-es/download/video/33847766/" type="video/mp4">
+        </video>
+        <!-- Burbujas decorativas -->
+        <div class="burbuja"></div>
+        <div class="burbuja"></div>
+        <div class="burbuja"></div>
+        <div class="burbuja"></div>
+        <div class="burbuja"></div>
+
+        <div class="container hero-especies-content">
+            <span class="bubble-badge">🐠 5 Especies Endémicas Marinas</span>
+            <h1>Conoce a nuestros<br>amigos del océano</h1>
+            <p>Descubre las increíbles criaturas que viven únicamente en las aguas de México
+                y aprende cómo podemos protegerlas juntos.</p>
+            <a href="#especies-grid" class="btn hero-btn btn-lg">¡Explorar ahora! 🔍</a>
+        </div>
+    </header>
+
+    <!-- ============ ONDA DIVISOR ============ -->
+    <div class="onda-divisor" style="background:#0096c7;">
+        <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#f5f7fb" />
+        </svg>
+    </div>
+
+    <!-- ============ INTRODUCCIÓN ============ -->
+    <section class="animate__animated animate__backInRight intro-endemicas" style="position: relative;">
+        <img src="../img/tortuga-flat-2.png" alt="Tortuga flotante" class="floating-section-img"
+            style="top: 10%; right: 5%; width: 180px;">
+        <div class="container">
+            <div class="intro-card">
+                <div class="intro-icono">🌍</div>
+                <div class="intro-texto">
+                    <h2>¿Qué son las especies endémicas?</h2>
+                    <p>Las <strong>especies endémicas</strong> son animales o plantas que viven <strong>únicamente en un
+                            lugar específico del mundo</strong>
+                        y no se encuentran en ningún otro sitio de forma natural. México es uno de los países con mayor
+                        diversidad de especies endémicas
+                        en el planeta, especialmente en sus mares. Cuando estas especies desaparecen, se van para
+                        siempre — ¡por eso debemos cuidarlas!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FILTROS ============ -->
+    <section class="filtros-section">
+        <div class="container">
+            <div class="filtros-wrap" id="filtros">
+                <button class="btn-filtro activo" onclick="filtrar('todos', this)">🌊 Todas</button>
+                <button class="btn-filtro" onclick="filtrar('vaquita', this)">🐬 Vaquita Marina</button>
+                <button class="btn-filtro" onclick="filtrar('tortuga', this)">🐢 Tortuga Caguama</button>
+                <button class="btn-filtro" onclick="filtrar('caballito', this)">🐴 Caballito de Mar</button>
+                <button class="btn-filtro" onclick="filtrar('tiburon', this)">🦈 Tiburón Cornudo</button>
+                <button class="btn-filtro" onclick="filtrar('lobo', this)">🦭 Lobo Fino de Guadalupe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ GRID ESPECIES ============ -->
+    <section class="animate__animated animate__backInRight especies-section" id="especies-grid"
+        style="position: relative;">
+        <img src="../img/Caballito-flat-2.png" alt="Caballito flotante" class="floating-section-img"
+            style="top: -5%; left: 5%; width: 150px;">
+        <div class="container" id="cards-container">
+            <div class="titulo-seccion">
+                <h2>Nuestras 5 especies</h2>
+                <p>Haz clic en "Ver video" para conocerlas todavía mejor ✨</p>
+            </div>
+
+            <!-- Contenedor Swiper -->
+            <div class="swiper especies-swiper" id="cards-container" style="padding-bottom: 0px; padding-top: 10px;">
+                <div class="swiper-wrapper" id="swiper-wrapper-especies">
+
+                    <!-- ======= VAQUITA MARINA ======= -->
+                    <div class="swiper-slide especie-item" data-tipo="vaquita"
+                        data-img-flotante="../img/vaquita-flat-2.png">
+                        <div class="especie-card" data-especie="vaquita">
+
+                            <div class="especie-card-header">
+                                <span class="especie-emoji"></span>
+                                <h3>Vaquita Marina</h3>
+                                <p class="nombre-cientifico">Phocoena sinus</p>
+                            </div>
+
+                            <div class="especie-img-wrap">
+                                <img src="../img/Vaquita-flat.jpeg" alt="Vaquita marina en el Golfo de California">
+                            </div>
+
+                            <div class="especie-body">
+                                <div>
+                                    <span class="estado-badge estado-critico">
+                                        <i class="bi bi-exclamation-triangle-fill"></i> Peligro Crítico
+                                    </span>
+                                </div>
+
+                                <div class="info-row">
+                                    <span class="info-icon">📍</span>
+                                    <div>
+                                        <span class="info-label">Hábitat</span>
+                                        Golfo de California, en aguas poco profundas cercanas a San Felipe, Baja
+                                        California.
+                                    </div>
+                                </div>
+
+                                <div class="info-row">
+                                    <span class="info-icon">🌿</span>
+                                    <div>
+                                        <span class="info-label">Importancia ecológica</span>
+                                        Regula las poblaciones de peces y calamares, manteniendo el equilibrio del
+                                        ecosistema marino del Golfo.
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <span class="info-label" style="display:block;margin-bottom:6px;">
+                                        <i class="bi bi-exclamation-circle-fill" style="color:#ef4444;"></i> Amenazas
+                                    </span>
+                                    <div class="amenazas-wrap">
+                                        <span class="amenaza-tag">Pesca ilegal</span>
+                                        <span class="amenaza-tag">Redes de enmalle</span>
+                                        <span class="amenaza-tag">Contaminación</span>
+                                        <span class="amenaza-tag">Captura accidental</span>
+                                    </div>
+                                </div>
+
+                                <button class="btn-especie" data-bs-toggle="modal" data-bs-target="#modalVaquita">
+                                    <i class="bi bi-play-circle-fill"></i> Ver video
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ======= TORTUGA CAGUAMA ======= -->
+                    <div class="swiper-slide especie-item" data-tipo="tortuga"
+                        data-img-flotante="../img/tortuga-flat-2.png">
+                        <div class="especie-card" data-especie="tortuga">
+
+                            <div class="especie-card-header">
+                                <span class="especie-emoji"></span>
+                                <h3>Tortuga Caguama</h3>
+                                <p class="nombre-cientifico" style="color:rgba(0,0,0,0.6)">Caretta caretta</p>
+                            </div>
+
+                            <div class="especie-img-wrap">
+                                <img src="../img/Tortuga-flat.jpeg" alt="Tortuga caguama">
+                            </div>
+
+                            <div class="especie-body">
+                                <div>
+                                    <span class="estado-badge estado-vulnerable">
+                                        <i class="bi bi-shield-exclamation"></i> Vulnerable
+                                    </span>
+                                </div>
+
+                                <div class="info-row">
+                                    <span class="info-icon">📍</span>
+                                    <div>
+                                        <span class="info-label">Hábitat</span>
+                                        Golfo de México, Mar Caribe y Océano Pacífico. Anida en playas de Baja
+                                        California y
+                                        Oaxaca.
+                                    </div>
+                                </div>
+
+                                <div class="info-row">
+                                    <span class="info-icon">🌿</span>
+                                    <div>
+                                        <span class="info-label">Importancia ecológica</span>
+                                        Controla las poblaciones de medusas y mantiene sanas las praderas marinas al
+                                        alimentarse de ellas.
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <span class="info-label" style="display:block;margin-bottom:6px;">
+                                        <i class="bi bi-exclamation-circle-fill" style="color:#ef4444;"></i> Amenazas
+                                    </span>
+                                    <div class="amenazas-wrap">
+                                        <span class="amenaza-tag">Captura incidental</span>
+                                        <span class="amenaza-tag">Contaminación plástica</span>
+                                        <span class="amenaza-tag">Pérdida de playas</span>
+                                        <span class="amenaza-tag">Cambio climático</span>
+                                    </div>
+                                </div>
+
+                                <button class="btn-especie" data-bs-toggle="modal" data-bs-target="#modalTortuga">
+                                    <i class="bi bi-play-circle-fill"></i> Ver video
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ======= CABALLITO DE MAR ======= -->
+                    <div class="swiper-slide especie-item" data-tipo="caballito"
+                        data-img-flotante="../img/Caballito-flat-2.png">
+                        <div class="especie-card" data-especie="caballito">
+
+                            <div class="especie-card-header">
+                                <span class="especie-emoji"></span>
+                                <h3>Caballito de Mar</h3>
+                                <p class="nombre-cientifico">Hippocampus ingens</p>
+                            </div>
+
+                            <div class="especie-img-wrap">
+                                <img src="../img/Caballito-flat.jpeg" alt="Caballito de mar agarrado a un coral">
+                            </div>
+
+                            <div class="especie-body">
+                                <div>
+                                    <span class="estado-badge estado-vulnerable">
+                                        <i class="bi bi-shield-exclamation"></i> Vulnerable
+                                    </span>
+                                </div>
+
+                                <div class="info-row">
+                                    <span class="info-icon">📍</span>
+                                    <div>
+                                        <span class="info-label">Hábitat</span>
+                                        Costas del Pacífico mexicano, especialmente en arrecifes de coral, pastos
+                                        marinos y
+                                        manglares.
+                                    </div>
+                                </div>
+
+                                <div class="info-row">
+                                    <span class="info-icon">🌿</span>
+                                    <div>
+                                        <span class="info-label">Importancia ecológica</span>
+                                        Depredador de pequeños crustáceos; sirve como indicador de la salud del
+                                        ecosistema
+                                        marino.
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <span class="info-label" style="display:block;margin-bottom:6px;">
+                                        <i class="bi bi-exclamation-circle-fill" style="color:#ef4444;"></i> Amenazas
+                                    </span>
+                                    <div class="amenazas-wrap">
+                                        <span class="amenaza-tag">Destrucción de hábitat</span>
+                                        <span class="amenaza-tag">Medicina tradicional</span>
+                                        <span class="amenaza-tag">Pesca de arrastre</span>
+                                        <span class="amenaza-tag">Acuario ilegal</span>
+                                    </div>
+                                </div>
+
+                                <button class="btn-especie" data-bs-toggle="modal" data-bs-target="#modalCaballito">
+                                    <i class="bi bi-play-circle-fill"></i> Ver video
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ======= TIBURÓN CORNUDO ======= -->
+                    <div class="swiper-slide especie-item" data-tipo="tiburon"
+                        data-img-flotante="../img/Tiburon-flat-2.png">
+                        <div class="especie-card" data-especie="tiburon">
+
+                            <div class="especie-card-header">
+                                <span class="especie-emoji"></span>
+                                <h3>Tiburón Cornudo</h3>
+                                <p class="nombre-cientifico">Heterodontus francisci</p>
+                            </div>
+
+                            <div class="especie-img-wrap">
+                                <img src="../img/Tiburon-flat.jpeg" alt="Tiburón cornudo sobre el lecho marino">
+                            </div>
+
+                            <div class="especie-body">
+                                <div>
+                                    <span class="estado-badge estado-menor">
+                                        <i class="bi bi-shield-check-fill"></i> Preocupación Menor
+                                    </span>
+                                </div>
+
+                                <div class="info-row">
+                                    <span class="info-icon">📍</span>
+                                    <div>
+                                        <span class="info-label">Hábitat</span>
+                                        Fondos rocosos del Pacífico, principalmente en el Golfo de California, a
+                                        profundidades de hasta 150 m.
+                                    </div>
+                                </div>
+
+                                <div class="info-row">
+                                    <span class="info-icon">🌿</span>
+                                    <div>
+                                        <span class="info-label">Importancia ecológica</span>
+                                        Controla las poblaciones de erizos y moluscos, evitando el desequilibrio de los
+                                        arrecifes rocosos.
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <span class="info-label" style="display:block;margin-bottom:6px;">
+                                        <i class="bi bi-exclamation-circle-fill" style="color:#ef4444;"></i> Amenazas
+                                    </span>
+                                    <div class="amenazas-wrap">
+                                        <span class="amenaza-tag">Pesca artesanal</span>
+                                        <span class="amenaza-tag">Degradación de arrecifes</span>
+                                        <span class="amenaza-tag">Contaminación marina</span>
+                                    </div>
+                                </div>
+
+                                <button class="btn-especie" data-bs-toggle="modal" data-bs-target="#modalTiburon">
+                                    <i class="bi bi-play-circle-fill"></i> Ver video
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ======= LOBO FINO DE GUADALUPE ======= -->
+                    <div class="swiper-slide especie-item" data-tipo="lobo" data-img-flotante="../img/Lobo-flat-2.png">
+                        <div class="especie-card" data-especie="lobo">
+
+                            <div class="especie-card-header">
+                                <span class="especie-emoji"></span>
+                                <h3>Lobo Fino de Guadalupe</h3>
+                                <p class="nombre-cientifico">Arctocephalus townsendi</p>
+                            </div>
+
+                            <div class="especie-img-wrap">
+                                <img src="../img/Lobo-flat.jpeg" alt="Lobo marino descansando sobre una roca">
+                            </div>
+
+                            <div class="especie-body">
+                                <div>
+                                    <span class="estado-badge estado-peligro">
+                                        <i class="bi bi-exclamation-octagon-fill"></i> En Peligro
+                                    </span>
+                                </div>
+
+                                <div class="info-row">
+                                    <span class="info-icon">📍</span>
+                                    <div>
+                                        <span class="info-label">Hábitat</span>
+                                        Isla de Guadalupe, Baja California. Única colonia reproductora del mundo fuera
+                                        de
+                                        México.
+                                    </div>
+                                </div>
+
+                                <div class="info-row">
+                                    <span class="info-icon">🌿</span>
+                                    <div>
+                                        <span class="info-label">Importancia ecológica</span>
+                                        Regula las poblaciones de peces pelágicos y transfiere nutrientes entre el
+                                        océano y
+                                        la tierra.
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <span class="info-label" style="display:block;margin-bottom:6px;">
+                                        <i class="bi bi-exclamation-circle-fill" style="color:#ef4444;"></i> Amenazas
+                                    </span>
+                                    <div class="amenazas-wrap">
+                                        <span class="amenaza-tag">Caza histórica</span>
+                                        <span class="amenaza-tag">Cambio climático</span>
+                                        <span class="amenaza-tag">Interacción con pesca</span>
+                                        <span class="amenaza-tag">Depredadores invasores</span>
+                                    </div>
+                                </div>
+
+                                <button class="btn-especie" data-bs-toggle="modal" data-bs-target="#modalLobo">
+                                    <i class="bi bi-play-circle-fill"></i> Ver video
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta "Más por venir" -->
+                    <div class="swiper-slide especie-item" data-tipo="extra" style="display:none;" id="card-extra"
+                        data-img-flotante="../img/extra-flotante.png">
+                        <div class="especie-card"
+                            style="background: linear-gradient(135deg,#0096c7,#48cae4); justify-content:center; align-items:center; min-height:400px;">
+                            <div class="text-center p-4" style="color:white;">
+                                <span style="font-size:4rem;">🌊</span>
+                                <h3 style="font-family:'Fredoka',sans-serif; font-size:1.8rem; margin-top:15px;">
+                                    ¡El océano tiene más secretos!
+                                </h3>
+                                <p style="opacity:0.9;">Sigue explorando para conocer más especies increíbles de México.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- /swiper-wrapper -->
+
+                <!-- Swiper Pagination & Navigation -->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next" style="color: #072142;"></div>
+                <div class="swiper-button-prev" style="color: #072142;"></div>
+            </div><!-- /swiper -->
+        </div>
+    </section>
+
+    <!-- ============ CONTADOR ============ -->
+    <section class="contador-section" style="position: relative;">
+        <img src="../img/vaquita-flat-2.png" alt="Vaquita flotante" class="floating-section-img"
+            style="top: -20%; right: 10%; width: 200px;">
+        <div class="container text-center mb-4" style="position:relative;z-index:2;">
+            <h2 style="font-family:'Fredoka',sans-serif;font-size:2.4rem;margin-bottom:8px;">¿Sabías que…?</h2>
+            <p style="opacity:0.8;font-size:1.05rem;">Datos que sorprenden sobre la vida marina en México</p>
+        </div>
+        <div class="marquee-wrapper">
+            <div class="marquee-content">
+                <!-- Original facts -->
+                <div class="contador-item">
+                    <span class="contador-num">~10</span>
+                    <p class="contador-label">Vaquitas marinas<br>quedan en el mundo</p>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-num">3°</span>
+                    <p class="contador-label">México es el 3er país<br>con más biodiversidad</p>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-num">11,000</span>
+                    <p class="contador-label">km de costas<br>en México</p>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-num">+700</span>
+                    <p class="contador-label">Especies de peces<br>en el Golfo de California</p>
+                </div>
+                <!-- New facts -->
+                <div class="contador-item">
+                    <span class="contador-num">6 de 7</span>
+                    <p class="contador-label">Especies de tortugas marinas<br>anidan en México</p>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-num">12%</span>
+                    <p class="contador-label">De la biodiversidad mundial<br>está en México</p>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-num">39</span>
+                    <p class="contador-label">Especies de cetáceos<br>viven en aguas mexicanas</p>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-num">2°</span>
+                    <p class="contador-label">Arrecife más grande del mundo<br>está en México</p>
+                </div>
+
+                <!-- Duplicate for loop -->
+                <div class="contador-item">
+                    <span class="contador-num">~10</span>
+                    <p class="contador-label">Vaquitas marinas<br>quedan en el mundo</p>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-num">3°</span>
+                    <p class="contador-label">México es el 3er país<br>con más biodiversidad</p>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-num">11,000</span>
+                    <p class="contador-label">km de costas<br>en México</p>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-num">+700</span>
+                    <p class="contador-label">Especies de peces<br>en el Golfo de California</p>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-num">6 de 7</span>
+                    <p class="contador-label">Especies de tortugas marinas<br>anidan en México</p>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-num">12%</span>
+                    <p class="contador-label">De la biodiversidad mundial<br>está en México</p>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-num">39</span>
+                    <p class="contador-label">Especies de cetáceos<br>viven en aguas mexicanas</p>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-num">2°</span>
+                    <p class="contador-label">Arrecife más grande del mundo<br>está en México</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PROBLEMÁTICA (ACCORDION) ============ -->
+    <section class="py-5" style="background:#f5f7fb; padding-top:80px !important; padding-bottom:80px !important;">
+        <div class="container">
+            <div class="titulo-seccion">
+                <h2>¿Por qué están en peligro?</h2>
+                <p>Los problemas que enfrentan nuestras especies marinas endémicas</p>
+            </div>
+            <div class="accordion accordion-especies" id="accordionProblemas">
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#prob1">
+                            🐟 Pesca ilegal y captura accidental
+                        </button>
+                    </h2>
+                    <div id="prob1" class="accordion-collapse collapse show" data-bs-parent="#accordionProblemas">
+                        <div class="accordion-body">
+                            La pesca ilegal de totoaba usa redes de enmalle que atrapan y matan accidentalmente a la
+                            vaquita marina.
+                            Las tortugas caguama quedan enredadas en redes de arrastre. Estas prácticas reducen
+                            drásticamente las
+                            poblaciones de las especies endémicas sin que puedan reproducirse a tiempo.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#prob2">
+                            🏭 Contaminación del océano
+                        </button>
+                    </h2>
+                    <div id="prob2" class="accordion-collapse collapse" data-bs-parent="#accordionProblemas">
+                        <div class="accordion-body">
+                            Hoy en día se produce más plástico que antes, y gran parte de él termina en nuestros
+                            océanos. Los desechos plásticos
+                            pueden dañar o matar a los animales marinos si los ingieren o se enredan en ellos. Además,
+                            los productos químicos que se liberan del plástico pueden contaminar el agua y dañar a los
+                            animales que viven en ella.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#prob3">
+                            🌡️ Cambio climático
+                        </button>
+                    </h2>
+                    <div id="prob3" class="accordion-collapse collapse" data-bs-parent="#accordionProblemas">
+                        <div class="accordion-body">
+                            Es sabido que el cambio climático está afectando a nuestro planeta de muchas maneras. Una de
+                            ellas es el aumento de la temperatura del océano, lo que provoca la acidificación del
+                            océano. Esto destruye los arrecifes de coral donde viven muchas especies marinas. El cambio
+                            climático también afecta las corrientes marinas de las que dependen muchas especies para
+                            encontrar alimento.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#prob4">
+                            🏗️ Urbanización y destrucción de hábitat
+                        </button>
+                    </h2>
+                    <div id="prob4" class="accordion-collapse collapse" data-bs-parent="#accordionProblemas">
+                        <div class="accordion-body">
+                            La construcción de hoteles, puertos y carreteras costeras destruye los manglares, arrecifes
+                            y playas de
+                            anidación de tortugas. La contaminación lumínica desorientan a las crías de tortuga que
+                            buscan el mar.
+                            El tráfico de barcos en el Golfo de California perturba a la vaquita marina.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#prob5">
+                            🐾 Tráfico ilegal de animales
+                        </button>
+                    </h2>
+                    <div id="prob5" class="accordion-collapse collapse" data-bs-parent="#accordionProblemas">
+                        <div class="accordion-body">
+                            Los caballitos de mar son capturados ilegalmente para medicina tradicional y acuarios
+                            decorativos.
+                            Los lobos finos de Guadalupe fueron cazados casi hasta la extinción a finales del siglo XIX.
+                            El tráfico de animales silvestres es el tercer mercado ilegal más grande del mundo.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ TIPS CONSERVACIÓN ============ -->
+    <section class="tips-section" style="position: relative;">
+        <img src="../img/Lobo-flat-2.png" alt="Lobo flotante" class="floating-section-img"
+            style="top: -5%; left: 8%; width: 220px;">
+        <div class="container">
+            <div class="titulo-seccion">
+                <h2>¿Cómo puedes ayudar? 💪</h2>
+                <p>¡Pequeñas acciones hacen grandes cambios para el océano!</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="tip-card">
+                        <span class="tip-icono">♻️</span>
+                        <h4>Recicla</h4>
+                        <p>Separa tu basura y evita tirar plástico.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="tip-card">
+                        <span class="tip-icono">🎣</span>
+                        <h4>Consume responsable</h4>
+                        <p>Elige mariscos de pesca sostenible.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="tip-card">
+                        <span class="tip-icono">📢</span>
+                        <h4>Difunde</h4>
+                        <p>Comparte información sobre las especies.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="tip-card">
+                        <span class="tip-icono">🌊</span>
+                        <h4>Limpia playas</h4>
+                        <p>Participa en jornadas de limpieza costera.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="tip-card">
+                        <span class="tip-icono">💧</span>
+                        <h4>Ahorra agua</h4>
+                        <p>Reduce el agua residual que llega al mar.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="tip-card">
+                        <span class="tip-icono">📚</span>
+                        <h4>Edúcate</h4>
+                        <p>Aprende y enseña a otros sobre la biodiversidad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="text-center p-4">
+        <p>© 2026 Océano Endémico · Especies Endémicas Marinas de México 🌊</p>
+    </footer>
+
+
+    <!-- ============ MODALES DE VIDEO ============ -->
+
+    <!-- Modal Vaquita -->
+    <div class="modal fade modal-especie" id="modalVaquita" tabindex="-1" data-especie="vaquita">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">🐬 Vaquita Marina</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-info-grid">
+                    <div class="modal-info-chip">
+                        <span>Nombre científico</span>
+                        <p><em>Phocoena sinus</em></p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Estado de conservación</span>
+                        <p>🔴 Peligro Crítico de Extinción</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Hábitat</span>
+                        <p>Golfo de California, aguas costeras poco profundas de Baja California.</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Dato curioso</span>
+                        <p>¡Es el mamífero marino más pequeño del mundo! Mide solo 1.5 m. 🤏</p>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/4X4-cMtGltw?si=lQ-lgaCLjRObDqvz&amp;controls=0"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tortuga Caguama -->
+    <div class="modal fade modal-especie" id="modalTortuga" tabindex="-1" data-especie="tortuga">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">🐢 Tortuga Caguama</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-info-grid">
+                    <div class="modal-info-chip">
+                        <span>Nombre científico</span>
+                        <p><em>Caretta caretta</em></p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Estado de conservación</span>
+                        <p>🟡 Vulnerable</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Hábitat</span>
+                        <p>Golfo de México, Caribe y Pacífico. Anida en playas de Oaxaca y Baja California.</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Dato curioso</span>
+                        <p>¡Puede vivir más de 80 años y recorre miles de kilómetros para anidar! 🗺️</p>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/lJczXMPbXoU?si=AQiGMElqJyCHbXy_&amp;controls=0"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Caballito de Mar -->
+    <div class="modal fade modal-especie" id="modalCaballito" tabindex="-1" data-especie="caballito">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">🐴 Caballito de Mar</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-info-grid">
+                    <div class="modal-info-chip">
+                        <span>Nombre científico</span>
+                        <p><em>Hippocampus ingens</em></p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Estado de conservación</span>
+                        <p>🟡 Vulnerable</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Hábitat</span>
+                        <p>Arrecifes de coral, pastos marinos y manglares del Pacífico mexicano.</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Dato curioso</span>
+                        <p>¡Son los únicos animales donde el PAPÁ embaraza y da a luz a las crías! 🍼</p>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/NF8JTsow3c0" title="Video Caballito de Mar"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tiburón Cornudo -->
+    <div class="modal fade modal-especie" id="modalTiburon" tabindex="-1" data-especie="tiburon">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">🦈 Tiburón Cornudo</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-info-grid">
+                    <div class="modal-info-chip">
+                        <span>Nombre científico</span>
+                        <p><em>Heterodontus francisci</em></p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Estado de conservación</span>
+                        <p>🟢 Preocupación Menor</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Hábitat</span>
+                        <p>Fondos rocosos del Golfo de California a profundidades de hasta 150 metros.</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Dato curioso</span>
+                        <p>Tiene cuernos sobre los ojos y pone huevos con forma de tornillo. ¡Es único! 🌀</p>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/wbD7svZNITw" title="Video Tiburón Cornudo"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Lobo Fino de Guadalupe -->
+    <div class="modal fade modal-especie" id="modalLobo" tabindex="-1" data-especie="lobo">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">🦭 Lobo Fino de Guadalupe</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-info-grid">
+                    <div class="modal-info-chip">
+                        <span>Nombre científico</span>
+                        <p><em>Arctocephalus townsendi</em></p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Estado de conservación</span>
+                        <p>🟠 En Peligro</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Hábitat</span>
+                        <p>Isla de Guadalupe, Baja California. Es la única colonia reproductora en México.</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Dato curioso</span>
+                        <p>¡Casi se extinguió por la caza a finales del s. XIX! Hoy van recuperándose. 💪</p>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/Es9o1HemkIU" title="Video Lobo Fino de Guadalupe"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="footer-ocean">
+        <div class="container">
+            <div class="row gy-5">
+                <!-- Marca -->
+                <div class="col-lg-4" data-aos="fade-up">
+                    <h3 class="footer-logo">Guardianes Marinos</h3>
+                    <p class="footer-text">
+                        Proyecto dedicado a la difusión y conservación
+                        de las especies marinas de México.
+                    </p>
+                </div>
+
+                <!-- Navegación -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="150">
+                    <h4 class="footer-title">Explorar</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li><a href="../html/especies.html">Especies</a></li>
+                        <li><a href="../html/problemas.html">Problemáticas</a></li>
+                        <li><a href="../html/juegos.html">Juegos</a></li>
+                        <li><a href="../html/contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <h4 class="footer-title">Síguenos</h4>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/guard_ianesdelmar/"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100067493418860"><i
+                                class="bi bi-facebook"></i></a>
+                        <a href="https://www.youtube.com/@cuidemosnuestrohabitat9966"><i class="bi bi-youtube"></i></a>
+                        <a href="https://x.com/MarinasGuardian"><i class="bi bi-twitter-x"></i></a>
+                    </div>
+                    <p class="footer-copy">
+                        Guardianes Marinos <br>
+                        Hecho por <br> Castro Hernandez Diego <br>
+                        Rodriguez Cano Emmanuel <br>
+                        Salinas Puga David
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============ SCRIPTS ============ -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        /* ===== FILTRO DE ESPECIES ===== */
+        let swiperEspecies;
+
+        function initSwiper(isSingleItem = false) {
+            let swiperConfig = {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                loop: !isSingleItem,
+                autoplay: isSingleItem ? false : {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                }
+            };
+
+            // Solo agregamos los breakpoints si NO es un item individual.
+            // Si es individual, se quedará en slidesPerView: 1 para abarcar todo el ancho.
+            if (!isSingleItem) {
+                swiperConfig.breakpoints = {
+                    768: {
+                        slidesPerView: 2,
+                    },
+                    992: {
+                        slidesPerView: 3,
+                    }
+                };
+            }
+
+            swiperEspecies = new Swiper('.especies-swiper', swiperConfig);
+        }
+
+        // Initialize Swiper on load
+        document.addEventListener('DOMContentLoaded', () => {
+            initSwiper(false);
+        });
+
+        /* ===== BOOP SOUND WITH WEB AUDIO API ===== */
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playBoopSound() {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            // Configurar sonido infantil (tipo burbuja/boop)
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(400, audioCtx.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(600, audioCtx.currentTime + 0.15);
+
+            gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.15);
+        }
+
+        function filtrar(tipo, btn) {
+            playBoopSound();
+            document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('activo'));
+            btn.classList.add('activo');
+
+            const section = document.getElementById('especies-grid');
+            const tituloSeccion = section.querySelector('.titulo-seccion');
+            const cardsContainer = document.getElementById('cards-container');
+
+            let singleView = document.getElementById('single-view-container');
+            if (!singleView) {
+                singleView = document.createElement('div');
+                singleView.id = 'single-view-container';
+                singleView.className = 'd-none';
+                singleView.innerHTML = `
+                    <div class="sv-overlay"></div>
+                    <img id="sv-floating-img" class="sv-floating-img d-none" src="" alt="Especie Flotante">
+                    <div class="container position-relative h-100" style="min-height: 70vh; display: flex; align-items: center;">
+                        <div class="sv-glass-card animated fadeInUp">
+                            <span id="sv-emoji" class="sv-emoji"></span>
+                            <h3 id="sv-title"></h3>
+                            <p id="sv-cientifico"></p>
+                            <hr class="sv-divider">
+                            <p class="sv-text">Descubre los detalles de esta especie endémica y por qué debemos protegerla.</p>
+                            <button id="sv-btn" class="btn btn-especie mt-4" data-bs-toggle="modal" style="width:100%; border-radius:50px; color: white;">▶ Ver video</button>
+                        </div>
+                    </div>
+                `;
+                section.appendChild(singleView);
+            }
+
+            if (tipo === 'todos') {
+                singleView.classList.add('d-none');
+                cardsContainer.classList.remove('d-none');
+                tituloSeccion.style.display = 'block';
+                section.style.padding = '60px 0 100px';
+
+                if (swiperEspecies) {
+                    swiperEspecies.destroy(true, true);
+                }
+                document.querySelectorAll('.especie-item').forEach(item => {
+                    item.classList.remove('d-none');
+                    item.classList.add('swiper-slide');
+                    item.style.display = '';
+                });
+
+                setTimeout(() => {
+                    initSwiper(false);
+                }, 50);
+            } else {
+                const card = document.querySelector(`.especie-item[data-tipo="${tipo}"]`);
+                if (card) {
+                    const imgSrc = card.querySelector('.especie-img-wrap img').src;
+                    const emoji = card.querySelector('.especie-emoji').innerText;
+                    const title = card.querySelector('h3').innerText;
+                    const cientifico = card.querySelector('.nombre-cientifico').innerText;
+                    const btnTarget = card.querySelector('.btn-especie').getAttribute('data-bs-target');
+                    const btnColor = getComputedStyle(card.querySelector('.btn-especie')).backgroundColor;
+
+                    const floatingImgSrc = card.getAttribute('data-img-flotante');
+
+                    singleView.style.backgroundImage = `url(${imgSrc})`;
+                    document.getElementById('sv-emoji').innerText = emoji;
+                    document.getElementById('sv-title').innerText = title;
+                    document.getElementById('sv-cientifico').innerText = cientifico;
+                    const svBtn = document.getElementById('sv-btn');
+                    svBtn.setAttribute('data-bs-target', btnTarget);
+                    svBtn.style.backgroundColor = btnColor;
+                    svBtn.style.border = 'none';
+
+                    const svFloatingImg = document.getElementById('sv-floating-img');
+                    if (floatingImgSrc) {
+                        svFloatingImg.src = floatingImgSrc;
+                        svFloatingImg.classList.remove('d-none');
+                    } else {
+                        svFloatingImg.classList.add('d-none');
+                    }
+
+                    cardsContainer.classList.add('d-none');
+                    tituloSeccion.style.display = 'none';
+                    singleView.classList.remove('d-none');
+                    section.style.padding = '0';
+                }
+            }
+        }
+
+        /* ===== ANIMACIÓN CARDS AL HACER SCROLL ===== */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = (i * 0.1) + 's';
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.especie-item').forEach(card => observer.observe(card));
+
+        /* Limpiar iframe al cerrar modales (stop video) */
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('hidden.bs.modal', () => {
+                const iframe = modal.querySelector('iframe');
+                if (iframe) {
+                    const src = iframe.src;
+                    iframe.src = '';
+                    iframe.src = src;
+                }
+            });
+        });
+    </script>
+
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .especie-item {
+            animation: fadeInUp 0.5s ease both;
+        }
+    </style>
+
+</body>
+
+</html>

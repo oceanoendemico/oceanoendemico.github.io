@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problemáticas Ambientales | Océano Endémico</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        /* ===== VARIABLES PROBLEMÁTICAS ===== */
+        :root {
+            --contaminacion: #06d6a0;
+            --pesca: #118ab2;
+            --clima: #ef4444;
+            --habitat: #f59e0b;
+            --trafico: #a855f7;
+
+            --hero-prob: #1a0533;
+        }
+
+        /* ===== HERO PROBLEMAS ===== */
+        .hero-problemas {
+            background: linear-gradient(135deg, #1a0533, #7f1d1d, #ef4444);
+            min-height: 45vh;
+            display: flex;
+            align-items: center;
+            padding-top: 90px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-problemas::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.12) 2px, transparent 2px);
+            background-size: 38px 38px;
+            z-index: 1;
+        }
+
+        .hero-problemas-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-problemas-content h1 {
+            font-family: "Fredoka", sans-serif;
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .hero-problemas-content p {
+            font-size: 1.25rem;
+            max-width: 620px;
+            margin: 0 auto 20px;
+            opacity: 0.95;
+        }
+
+        .bubble-badge-red {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(6px);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50px;
+            padding: 8px 22px;
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        /* Partículas decorativas hero */
+        .particula {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: flotar-burbuja 6s ease-in-out infinite;
+        }
+
+        .particula:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 15%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .particula:nth-child(2) {
+            width: 50px;
+            height: 50px;
+            top: 60%;
+            left: 10%;
+            animation-delay: 1.5s;
+        }
+
+        .particula:nth-child(3) {
+            width: 65px;
+            height: 65px;
+            top: 25%;
+            right: 8%;
+            animation-delay: 0.8s;
+        }
+
+        .particula:nth-child(4) {
+            width: 35px;
+            height: 35px;
+            bottom: 20%;
+            right: 18%;
+            animation-delay: 2s;
+        }
+
+        .particula:nth-child(5) {
+            width: 100px;
+            height: 100px;
+            bottom: 10%;
+            left: 35%;
+            animation-delay: 1s;
+        }
+
+        @keyframes flotar-burbuja {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-18px) scale(1.05);
+            }
+        }
+
+        /* ===== INTRO ===== */
+        .intro-problemas {
+            background: #f5f7fb;
+            padding: 60px 0 30px;
+        }
+
+        .intro-card {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .intro-icono {
+            width: 110px;
+            height: 110px;
+            min-width: 110px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ef4444, #f59e0b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .intro-texto h2 {
+            font-family: "Fredoka", sans-serif;
+            font-size: 2rem;
+            color: #072142;
+            margin-bottom: 12px;
+        }
+
+        .intro-texto p {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ===== FILTROS ===== */
+        .filtros-section {
+            background: #f5f7fb;
+            padding: 40px 0 10px;
+        }
+
+        .filtros-wrap {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-filtro {
+            background: white;
+            border: 3px solid #e0e7ef;
+            border-radius: 50px;
+            padding: 10px 24px;
+            font-family: "Fredoka", sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #072142;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-filtro:hover,
+        .btn-filtro.activo {
+            background: #ef4444;
+            border-color: #ef4444;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
+        }
+
+        /* ===== SECCIÓN PROBLEMÁTICAS CARDS ===== */
+        .problemas-grid-section {
+            padding: 60px 0 100px;
+            background: #f5f7fb;
+        }
+
+        .titulo-seccion {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .titulo-seccion h2 {
+            font-family: "Fredoka", sans-serif;
+            font-size: 3rem;
+            color: #072142;
+            margin-bottom: 10px;
+        }
+
+        .titulo-seccion p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        /* ===== TARJETA DE PROBLEMA ===== */
+        .problema-card {
+            background: white;
+            border-radius: 35px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .problema-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.18);
+        }
+
+        .problema-card-header {
+            padding: 22px 25px 15px;
+            position: relative;
+        }
+
+        .problema-card[data-problema="contaminacion"] .problema-card-header {
+            background: var(--contaminacion);
+        }
+
+        .problema-card[data-problema="pesca"] .problema-card-header {
+            background: var(--pesca);
+        }
+
+        .problema-card[data-problema="clima"] .problema-card-header {
+            background: var(--clima);
+        }
+
+        .problema-card[data-problema="habitat"] .problema-card-header {
+            background: var(--habitat);
+        }
+
+        .problema-card[data-problema="trafico"] .problema-card-header {
+            background: var(--trafico);
+        }
+
+        .problema-emoji {
+            font-size: 3.5rem;
+            line-height: 1;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .problema-card-header h3 {
+            font-family: "Fredoka", sans-serif;
+            font-size: 1.7rem;
+            color: white;
+            margin: 0;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .problema-card[data-problema="habitat"] .problema-card-header h3 {
+            color: #1a1a1a;
+        }
+
+        /* Imagen del problema */
+        .problema-img-wrap {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .problema-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .problema-card:hover .problema-img-wrap img {
+            transform: scale(1.07);
+        }
+
+        /* Body */
+        .problema-body {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        /* Especies afectadas tags */
+        .especies-afectadas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .especie-tag {
+            background: #fff0f0;
+            color: #c0392b;
+            border-radius: 20px;
+            padding: 3px 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border: 1.5px solid #ffd5d2;
+        }
+
+        /* Nivel de amenaza */
+        .nivel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 50px;
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-family: "Fredoka", sans-serif;
+            color: white;
+        }
+
+        .nivel-critico {
+            background: #ef4444;
+        }
+
+        .nivel-alto {
+            background: #f97316;
+        }
+
+        .nivel-moderado {
+            background: #eab308;
+            color: #1a1a1a;
+        }
+
+        /* Info rows */
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        .info-row .info-icon {
+            font-size: 1.3rem;
+            min-width: 26px;
+            text-align: center;
+            margin-top: 1px;
+        }
+
+        .info-label {
+            font-weight: 800;
+            color: #072142;
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 2px;
+        }
+
+        /* Botón ver más */
+        .btn-problema {
+            border: none;
+            border-radius: 50px;
+            padding: 12px 28px;
+            font-family: "Fredoka", sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .problema-card[data-problema="contaminacion"] .btn-problema {
+            background: var(--contaminacion);
+            color: #072142;
+        }
+
+        .problema-card[data-problema="pesca"] .btn-problema {
+            background: var(--pesca);
+        }
+
+        .problema-card[data-problema="clima"] .btn-problema {
+            background: var(--clima);
+        }
+
+        .problema-card[data-problema="habitat"] .btn-problema {
+            background: var(--habitat);
+            color: #1a1a1a;
+        }
+
+        .problema-card[data-problema="trafico"] .btn-problema {
+            background: var(--trafico);
+        }
+
+        .btn-problema:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            filter: brightness(1.08);
+        }
+
+        /* ===== DIVISOR ONDAS ===== */
+        .onda-divisor {
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            margin-top: -2px;
+        }
+
+        .onda-divisor svg {
+            display: block;
+        }
+
+        /* ===== CONTADOR / DATOS ===== */
+        .datos-section {
+            background: linear-gradient(135deg, #1a0533, #7f1d1d);
+            padding: 70px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .datos-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.07) 2px, transparent 2px);
+            background-size: 30px 30px;
+        }
+
+        .marquee-wrapper {
+            overflow: hidden;
+            width: 100%;
+            z-index: 2;
+            padding: 20px 0;
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        }
+
+        .marquee-content {
+            display: flex;
+            width: max-content;
+            animation: scroll-left 40s linear infinite;
+            gap: 50px;
+        }
+
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .dato-item {
+            text-align: center;
+        }
+
+        .dato-num {
+            font-family: "Fredoka", sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #fbbf24;
+            display: block;
+            line-height: 1;
+        }
+
+        .dato-label {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin-top: 6px;
+        }
+
+        /* ===== ACCORDION IMPACTO POR ESPECIE ===== */
+        .impacto-section {
+            background: #f5f7fb;
+            padding: 80px 0;
+        }
+
+        .accordion-impacto .accordion-item {
+            border: none;
+            border-radius: 22px !important;
+            overflow: hidden;
+            margin-bottom: 16px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+        }
+
+        .accordion-impacto .accordion-button {
+            font-family: "Fredoka", sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #072142;
+            background: white;
+            padding: 20px 26px;
+            box-shadow: none;
+        }
+
+        .accordion-impacto .accordion-button:not(.collapsed) {
+            background: #ef4444;
+            color: white;
+        }
+
+        .accordion-impacto .accordion-button:focus {
+            box-shadow: none;
+        }
+
+        .accordion-impacto .accordion-body {
+            background: white;
+            padding: 20px 26px;
+            font-size: 0.97rem;
+            color: #555;
+            line-height: 1.75;
+        }
+
+        .accordion-impacto .accordion-button::after {
+            filter: brightness(0) invert(1);
+        }
+
+        .accordion-impacto .accordion-button.collapsed::after {
+            filter: none;
+        }
+
+        /* ===== TIPS / CONSERVACIÓN ===== */
+        .tips-section {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .tip-card {
+            background: #f5f7fb;
+            border-radius: 25px;
+            padding: 30px 25px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .tip-icono {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .tip-card h4 {
+            font-family: "Fredoka", sans-serif;
+            font-size: 1.3rem;
+            color: #072142;
+            margin-bottom: 10px;
+        }
+
+        .tip-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ===== MODAL PROBLEMA ===== */
+        .modal-problema .modal-content {
+            border-radius: 30px;
+            overflow: hidden;
+            border: none;
+        }
+
+        .modal-problema .modal-header {
+            border: none;
+            padding: 22px 28px 14px;
+        }
+
+        .modal-problema .modal-title {
+            font-family: "Fredoka", sans-serif;
+            font-size: 1.6rem;
+            color: white;
+        }
+
+        .modal-problema .btn-close {
+            filter: brightness(0) invert(1);
+        }
+
+        .modal-problema[data-problema="contaminacion"] .modal-header {
+            background: var(--contaminacion);
+        }
+
+        .modal-problema[data-problema="pesca"] .modal-header {
+            background: var(--pesca);
+        }
+
+        .modal-problema[data-problema="clima"] .modal-header {
+            background: var(--clima);
+        }
+
+        .modal-problema[data-problema="habitat"] .modal-header {
+            background: var(--habitat);
+        }
+
+        .modal-problema[data-problema="trafico"] .modal-header {
+            background: var(--trafico);
+        }
+
+        .modal-problema[data-problema="contaminacion"] .modal-title {
+            color: #072142;
+        }
+
+        .modal-problema[data-problema="habitat"] .modal-title {
+            color: #072142;
+        }
+
+        .modal-problema[data-problema="contaminacion"] .btn-close {
+            filter: none;
+        }
+
+        .modal-problema[data-problema="habitat"] .btn-close {
+            filter: none;
+        }
+
+        .modal-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            padding: 24px;
+        }
+
+        .modal-info-chip {
+            background: #f5f7fb;
+            border-radius: 18px;
+            padding: 16px 18px;
+        }
+
+        .modal-info-chip span {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 800;
+            color: #ef4444;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .modal-info-chip p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        /* ===== CARRUSEL IMPACTO ===== */
+        .carrusel-section {
+            background: white;
+            padding: 60px 0;
+        }
+
+        /* ===== FORMULARIO COMPROMISO ===== */
+        .compromiso-section {
+            background: #f5f7fb;
+            padding: 80px 0;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero-problemas-content h1 {
+                font-size: 2.6rem;
+            }
+
+            .intro-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .modal-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-problemas-content h1 {
+                font-size: 2rem;
+            }
+
+            .problema-card-header h3 {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Animaciones cards */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .problema-item {
+            animation: fadeInUp 0.5s ease both;
+        }
+    </style>
+</head>
+
+<body>
+
+        <!-- ============ NAVBAR ============ -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Guardianes Marinos</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../html/especies.html">Especies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../html/problemas.html">Problemas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../html/juegos.html">Juegos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../html/contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../html/ayuda.html">Ayuda</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============ HERO PROBLEMAS ============ -->
+    <header class="hero-problemas">
+        <div class="particula"></div>
+        <div class="particula"></div>
+        <div class="particula"></div>
+        <div class="particula"></div>
+        <div class="particula"></div>
+
+        <div class="container hero-problemas-content">
+            <span class="bubble-badge-red">⚠️ 5 Amenazas que debemos conocer</span>
+            <h1>¿Qué pone en peligro<br>a nuestro océano?</h1>
+            <p>Conoce los problemas ambientales que amenazan a las especies marinas endémicas de México
+                y descubre cómo podemos ayudar a protegerlas.</p>
+            <a href="#problemas-grid" class="btn hero-btn btn-lg">¡Descúbrelo! 🔍</a>
+        </div>
+    </header>
+
+    <!-- ============ ONDA DIVISOR ============ -->
+    <div class="onda-divisor" style="background:#ef4444;">
+        <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#f5f7fb" />
+        </svg>
+    </div>
+
+    <!-- ============ INTRODUCCIÓN ============ -->
+    <section class="intro-problemas">
+        <div class="container">
+            <div class="intro-card" data-aos="fade-up">
+                <div class="intro-icono">🌎</div>
+                <div class="intro-texto">
+                    <h2>¿Qué son las problemáticas ambientales?</h2>
+                    <p>Las <strong>problemáticas ambientales</strong> son los daños que los seres humanos causamos al
+                        medio ambiente, afectando a animales, plantas y ecosistemas. En México, las <strong>especies
+                            marinas endémicas</strong> como la vaquita marina, la tortuga caguama, el caballito de mar,
+                        el tiburón cornudo y el lobo fino de Guadalupe enfrentan amenazas muy serias.
+                        ¡Si no actuamos ahora, estas especies pueden desaparecer para siempre! 😢</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CARRUSEL - IMPACTO VISUAL ============ -->
+    <section class="carrusel-section" id="carrusel-problemas">
+        <div class="container">
+            <div class="titulo-seccion" data-aos="fade-up">
+                <h2>Así se ve el daño 😟</h2>
+                <p>Imágenes reales de los problemas que enfrentan nuestras especies</p>
+            </div>
+            <div id="carouselProblemas" class="carousel slide custom-carousel" data-bs-ride="carousel"
+                data-aos="fade-up">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselProblemas" data-bs-slide-to="0"
+                        class="active"></button>
+                    <button type="button" data-bs-target="#carouselProblemas" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#carouselProblemas" data-bs-slide-to="2"></button>
+                    <button type="button" data-bs-target="#carouselProblemas" data-bs-slide-to="3"></button>
+                    <button type="button" data-bs-target="#carouselProblemas" data-bs-slide-to="4"></button>
+                </div>
+                <div class="carousel-inner" style="border-radius: 24px; overflow:hidden; max-height:480px;">
+                    <div class="carousel-item active">
+                        <img src="../img/Contaminacion-oceano.jpg" class="d-block w-100" alt="Contaminación marina"
+                            style="object-fit:cover; max-height:480px;">
+                        <div class="carousel-caption d-none d-md-block"
+                            style="background:rgba(0,0,0,0.5); border-radius:12px; padding:14px 20px;">
+                            <h5>🏭 Contaminación del océano</h5>
+                            <p>El plástico y los residuos químicos matan a miles de animales marinos cada año. La
+                                vaquita marina y la tortuga caguama son las más afectadas.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../img/Pesca-excesiva.webp" class="d-block w-100" alt="Pesca excesiva"
+                            style="object-fit:cover; max-height:480px;">
+                        <div class="carousel-caption d-none d-md-block"
+                            style="background:rgba(0,0,0,0.5); border-radius:12px; padding:14px 20px;">
+                            <h5>🎣 Pesca ilegal y captura accidental</h5>
+                            <p>Las redes de enmalle para cazar totoaba atrapan accidentalmente a la vaquita marina, el
+                                animal más en peligro del mundo.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../img/Cambio-climatico.webp" class="d-block w-100" alt="Cambio climático"
+                            style="object-fit:cover; max-height:480px;">
+                        <div class="carousel-caption d-none d-md-block"
+                            style="background:rgba(0,0,0,0.5); border-radius:12px; padding:14px 20px;">
+                            <h5>🌡️ Cambio climático</h5>
+                            <p>El calentamiento del mar destruye los arrecifes de coral donde viven el caballito de mar
+                                y el tiburón cornudo.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../img/Destruccion-habitats.jpg" class="d-block w-100" alt="Destrucción de hábitats"
+                            style="object-fit:cover; max-height:480px;">
+                        <div class="carousel-caption d-none d-md-block"
+                            style="background:rgba(0,0,0,0.5); border-radius:12px; padding:14px 20px;">
+                            <h5>🏗️ Destrucción del hábitat</h5>
+                            <p>La construcción costera elimina manglares, arrecifes y playas de anidación. La tortuga
+                                caguama pierde sus zonas de desove.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../img/vaquita-marina.jpg" class="d-block w-100" alt="Tráfico ilegal"
+                            style="object-fit:cover; max-height:480px;">
+                        <div class="carousel-caption d-none d-md-block"
+                            style="background:rgba(0,0,0,0.5); border-radius:12px; padding:14px 20px;">
+                            <h5>🐾 Tráfico ilegal de animales</h5>
+                            <p>El caballito de mar y el lobo fino de Guadalupe son víctimas del comercio ilegal. Esto
+                                reduce drásticamente sus poblaciones.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselProblemas"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselProblemas"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FILTROS ============ -->
+    <section class="filtros-section">
+        <div class="container">
+            <div class="filtros-wrap" id="filtros">
+                <button class="btn-filtro activo" onclick="filtrarProblema('todos', this)">🌊 Todas</button>
+                <button class="btn-filtro" onclick="filtrarProblema('contaminacion', this)">🏭 Contaminación</button>
+                <button class="btn-filtro" onclick="filtrarProblema('pesca', this)">🎣 Pesca ilegal</button>
+                <button class="btn-filtro" onclick="filtrarProblema('clima', this)">🌡️ Cambio climático</button>
+                <button class="btn-filtro" onclick="filtrarProblema('habitat', this)">🏗️ Pérdida de hábitat</button>
+                <button class="btn-filtro" onclick="filtrarProblema('trafico', this)">🐾 Tráfico ilegal</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ GRID PROBLEMÁTICAS ============ -->
+    <section class="problemas-grid-section" id="problemas-grid">
+        <div class="container">
+            <div class="titulo-seccion">
+                <h2>Las 5 grandes amenazas</h2>
+                <p>Haz clic en "Saber más" para conocer cada problema a fondo 🔍</p>
+            </div>
+
+            <div class="row g-4 justify-content-center" id="cards-problemas">
+
+                <!-- ======= CONTAMINACIÓN ======= -->
+                <div class="col-md-6 col-lg-4 problema-item" data-tipo="contaminacion" data-aos="fade-up">
+                    <div class="problema-card" data-problema="contaminacion">
+                        <div class="problema-card-header">
+                            <span class="problema-emoji">🏭</span>
+                            <h3>Contaminación marina</h3>
+                        </div>
+                        <div class="problema-img-wrap">
+                            <img src="../img/Contaminacion-oceano.jpg" alt="Contaminación del océano">
+                        </div>
+                        <div class="problema-body">
+                            <div>
+                                <span class="nivel-badge nivel-critico">
+                                    <i class="bi bi-exclamation-triangle-fill"></i> Nivel: Crítico
+                                </span>
+                            </div>
+
+                            <div class="info-row">
+                                <span class="info-icon">📋</span>
+                                <div>
+                                    <span class="info-label">¿Qué es?</span>
+                                    Plásticos, petróleo, químicos y aguas residuales entran al mar y envenenan
+                                    el agua donde viven nuestras especies.
+                                </div>
+                            </div>
+
+                            <div class="info-row">
+                                <span class="info-icon">💥</span>
+                                <div>
+                                    <span class="info-label">Consecuencias</span>
+                                    Las tortugas confunden el plástico con comida. Los corales mueren, quitándole
+                                    el hogar al caballito de mar.
+                                </div>
+                            </div>
+
+                            <div>
+                                <span class="info-label" style="display:block;margin-bottom:6px;">
+                                    <i class="bi bi-exclamation-circle-fill" style="color:#ef4444;"></i> Especies más
+                                    afectadas
+                                </span>
+                                <div class="especies-afectadas">
+                                    <span class="especie-tag">🐢 Tortuga caguama</span>
+                                    <span class="especie-tag">🐬 Vaquita marina</span>
+                                    <span class="especie-tag">🐴 Caballito de mar</span>
+                                </div>
+                            </div>
+
+                            <button class="btn-problema" data-bs-toggle="modal" data-bs-target="#modalContaminacion">
+                                <i class="bi bi-info-circle-fill"></i> Saber más
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ======= PESCA ILEGAL ======= -->
+                <div class="col-md-6 col-lg-4 problema-item" data-tipo="pesca" data-aos="fade-up" data-aos-delay="100">
+                    <div class="problema-card" data-problema="pesca">
+                        <div class="problema-card-header">
+                            <span class="problema-emoji">🎣</span>
+                            <h3>Pesca ilegal y captura accidental</h3>
+                        </div>
+                        <div class="problema-img-wrap">
+                            <img src="../img/Pesca-excesiva.webp" alt="Pesca excesiva">
+                        </div>
+                        <div class="problema-body">
+                            <div>
+                                <span class="nivel-badge nivel-critico">
+                                    <i class="bi bi-exclamation-triangle-fill"></i> Nivel: Crítico
+                                </span>
+                            </div>
+
+                            <div class="info-row">
+                                <span class="info-icon">📋</span>
+                                <div>
+                                    <span class="info-label">¿Qué es?</span>
+                                    La pesca sin control y el uso de redes prohibidas atrapan y matan
+                                    accidentalmente a especies que no eran el objetivo.
+                                </div>
+                            </div>
+
+                            <div class="info-row">
+                                <span class="info-icon">💥</span>
+                                <div>
+                                    <span class="info-label">Consecuencias</span>
+                                    La vaquita marina muere atrapada en redes de enmalle ilegales.
+                                    Hoy quedan menos de 10 individuos en el mundo.
+                                </div>
+                            </div>
+
+                            <div>
+                                <span class="info-label" style="display:block;margin-bottom:6px;">
+                                    <i class="bi bi-exclamation-circle-fill" style="color:#ef4444;"></i> Especies más
+                                    afectadas
+                                </span>
+                                <div class="especies-afectadas">
+                                    <span class="especie-tag">🐬 Vaquita marina</span>
+                                    <span class="especie-tag">🐢 Tortuga caguama</span>
+                                    <span class="especie-tag">🦈 Tiburón cornudo</span>
+                                </div>
+                            </div>
+
+                            <button class="btn-problema" data-bs-toggle="modal" data-bs-target="#modalPesca">
+                                <i class="bi bi-info-circle-fill"></i> Saber más
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ======= CAMBIO CLIMÁTICO ======= -->
+                <div class="col-md-6 col-lg-4 problema-item" data-tipo="clima" data-aos="fade-up" data-aos-delay="200">
+                    <div class="problema-card" data-problema="clima">
+                        <div class="problema-card-header">
+                            <span class="problema-emoji">🌡️</span>
+                            <h3>Cambio climático</h3>
+                        </div>
+                        <div class="problema-img-wrap">
+                            <img src="../img/Cambio-climatico.webp" alt="Cambio climático">
+                        </div>
+                        <div class="problema-body">
+                            <div>
+                                <span class="nivel-badge nivel-alto">
+                                    <i class="bi bi-thermometer-high"></i> Nivel: Alto
+                                </span>
+                            </div>
+
+                            <div class="info-row">
+                                <span class="info-icon">📋</span>
+                                <div>
+                                    <span class="info-label">¿Qué es?</span>
+                                    El aumento de temperatura del planeta calienta los océanos, los acidifica
+                                    y altera las corrientes marinas y los ecosistemas.
+                                </div>
+                            </div>
+
+                            <div class="info-row">
+                                <span class="info-icon">💥</span>
+                                <div>
+                                    <span class="info-label">Consecuencias</span>
+                                    Los arrecifes de coral se blanquean y mueren. Esto destruye el hogar del
+                                    caballito de mar y del tiburón cornudo.
+                                </div>
+                            </div>
+
+                            <div>
+                                <span class="info-label" style="display:block;margin-bottom:6px;">
+                                    <i class="bi bi-exclamation-circle-fill" style="color:#ef4444;"></i> Especies más
+                                    afectadas
+                                </span>
+                                <div class="especies-afectadas">
+                                    <span class="especie-tag">🐴 Caballito de mar</span>
+                                    <span class="especie-tag">🦈 Tiburón cornudo</span>
+                                    <span class="especie-tag">🦭 Lobo fino</span>
+                                </div>
+                            </div>
+
+                            <button class="btn-problema" data-bs-toggle="modal" data-bs-target="#modalClima">
+                                <i class="bi bi-info-circle-fill"></i> Saber más
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ======= PÉRDIDA DE HÁBITAT ======= -->
+                <div class="col-md-6 col-lg-4 problema-item" data-tipo="habitat" data-aos="fade-up"
+                    data-aos-delay="300">
+                    <div class="problema-card" data-problema="habitat">
+                        <div class="problema-card-header">
+                            <span class="problema-emoji">🏗️</span>
+                            <h3>Pérdida de hábitat</h3>
+                        </div>
+                        <div class="problema-img-wrap">
+                            <img src="../img/Destruccion-habitats.jpg" alt="Destrucción de hábitats">
+                        </div>
+                        <div class="problema-body">
+                            <div>
+                                <span class="nivel-badge nivel-alto">
+                                    <i class="bi bi-house-x-fill"></i> Nivel: Alto
+                                </span>
+                            </div>
+
+                            <div class="info-row">
+                                <span class="info-icon">📋</span>
+                                <div>
+                                    <span class="info-label">¿Qué es?</span>
+                                    La construcción de hoteles, puertos y carreteras destruye manglares,
+                                    arrecifes y playas donde las especies viven o se reproducen.
+                                </div>
+                            </div>
+
+                            <div class="info-row">
+                                <span class="info-icon">💥</span>
+                                <div>
+                                    <span class="info-label">Consecuencias</span>
+                                    Las tortugas pierden sus playas de anidación. La luz artificial desorienta
+                                    a las crías recién nacidas que buscan el mar.
+                                </div>
+                            </div>
+
+                            <div>
+                                <span class="info-label" style="display:block;margin-bottom:6px;">
+                                    <i class="bi bi-exclamation-circle-fill" style="color:#ef4444;"></i> Especies más
+                                    afectadas
+                                </span>
+                                <div class="especies-afectadas">
+                                    <span class="especie-tag">🐢 Tortuga caguama</span>
+                                    <span class="especie-tag">🐴 Caballito de mar</span>
+                                    <span class="especie-tag">🐬 Vaquita marina</span>
+                                </div>
+                            </div>
+
+                            <button class="btn-problema" data-bs-toggle="modal" data-bs-target="#modalHabitat">
+                                <i class="bi bi-info-circle-fill"></i> Saber más
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ======= TRÁFICO ILEGAL ======= -->
+                <div class="col-md-6 col-lg-4 problema-item" data-tipo="trafico" data-aos="fade-up"
+                    data-aos-delay="400">
+                    <div class="problema-card" data-problema="trafico">
+                        <div class="problema-card-header">
+                            <span class="problema-emoji">🐾</span>
+                            <h3>Tráfico ilegal de animales</h3>
+                        </div>
+                        <div class="problema-img-wrap">
+                            <img src="../img/tortuga.jpg" alt="Tráfico de animales">
+                        </div>
+                        <div class="problema-body">
+                            <div>
+                                <span class="nivel-badge nivel-moderado">
+                                    <i class="bi bi-shield-exclamation"></i> Nivel: Moderado-Alto
+                                </span>
+                            </div>
+
+                            <div class="info-row">
+                                <span class="info-icon">📋</span>
+                                <div>
+                                    <span class="info-label">¿Qué es?</span>
+                                    El comercio ilegal de animales silvestres es el tercer mercado negro más grande
+                                    del mundo, después de las drogas y las armas.
+                                </div>
+                            </div>
+
+                            <div class="info-row">
+                                <span class="info-icon">💥</span>
+                                <div>
+                                    <span class="info-label">Consecuencias</span>
+                                    Los caballitos de mar son capturados para medicina y acuarios. Los lobos finos
+                                    estuvieron casi extintos por la caza en el siglo XIX.
+                                </div>
+                            </div>
+
+                            <div>
+                                <span class="info-label" style="display:block;margin-bottom:6px;">
+                                    <i class="bi bi-exclamation-circle-fill" style="color:#ef4444;"></i> Especies más
+                                    afectadas
+                                </span>
+                                <div class="especies-afectadas">
+                                    <span class="especie-tag">🐴 Caballito de mar</span>
+                                    <span class="especie-tag">🦭 Lobo fino</span>
+                                    <span class="especie-tag">🐢 Tortuga caguama</span>
+                                </div>
+                            </div>
+
+                            <button class="btn-problema" data-bs-toggle="modal" data-bs-target="#modalTrafico">
+                                <i class="bi bi-info-circle-fill"></i> Saber más
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /row -->
+        </div>
+    </section>
+
+    <!-- ============ DATOS ALARMANTES (MARQUEE) ============ -->
+    <section class="datos-section">
+        <div class="container text-center mb-4" style="position:relative;z-index:2;">
+            <h2 style="font-family:'Fredoka',sans-serif;font-size:2.4rem;margin-bottom:8px;">😱 Datos que debes saber
+            </h2>
+            <p style="opacity:0.8;font-size:1.05rem;">Números reales sobre la crisis ambiental marina en México</p>
+        </div>
+        <div class="marquee-wrapper">
+            <div class="marquee-content">
+                <div class="dato-item"><span class="dato-num">&lt;10</span>
+                    <p class="dato-label">Vaquitas marinas<br>quedan en el mundo 😢</p>
+                </div>
+                <div class="dato-item"><span class="dato-num">8M</span>
+                    <p class="dato-label">Toneladas de plástico<br>entran al mar cada año</p>
+                </div>
+                <div class="dato-item"><span class="dato-num">3er</span>
+                    <p class="dato-label">Mercado negro más grande<br>es el tráfico de animales</p>
+                </div>
+                <div class="dato-item"><span class="dato-num">50%</span>
+                    <p class="dato-label">De los arrecifes del mundo<br>han desaparecido</p>
+                </div>
+                <div class="dato-item"><span class="dato-num">1°C</span>
+                    <p class="dato-label">Aumento de temperatura del mar<br>destruye miles de corales</p>
+                </div>
+                <div class="dato-item"><span class="dato-num">100+</span>
+                    <p class="dato-label">Especies extintas cada día<br>por actividades humanas</p>
+                </div>
+                <div class="dato-item"><span class="dato-num">80%</span>
+                    <p class="dato-label">De la contaminación marina<br>viene de tierra firme</p>
+                </div>
+                <div class="dato-item"><span class="dato-num">1880</span>
+                    <p class="dato-label">El lobo fino casi desaparece<br>por la caza excesiva</p>
+                </div>
+                <!-- Duplicados para el loop -->
+                <div class="dato-item"><span class="dato-num">&lt;10</span>
+                    <p class="dato-label">Vaquitas marinas<br>quedan en el mundo 😢</p>
+                </div>
+                <div class="dato-item"><span class="dato-num">8M</span>
+                    <p class="dato-label">Toneladas de plástico<br>entran al mar cada año</p>
+                </div>
+                <div class="dato-item"><span class="dato-num">3er</span>
+                    <p class="dato-label">Mercado negro más grande<br>es el tráfico de animales</p>
+                </div>
+                <div class="dato-item"><span class="dato-num">50%</span>
+                    <p class="dato-label">De los arrecifes del mundo<br>han desaparecido</p>
+                </div>
+                <div class="dato-item"><span class="dato-num">1°C</span>
+                    <p class="dato-label">Aumento de temperatura del mar<br>destruye miles de corales</p>
+                </div>
+                <div class="dato-item"><span class="dato-num">100+</span>
+                    <p class="dato-label">Especies extintas cada día<br>por actividades humanas</p>
+                </div>
+                <div class="dato-item"><span class="dato-num">80%</span>
+                    <p class="dato-label">De la contaminación marina<br>viene de tierra firme</p>
+                </div>
+                <div class="dato-item"><span class="dato-num">1880</span>
+                    <p class="dato-label">El lobo fino casi desaparece<br>por la caza excesiva</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ ACCORDION — IMPACTO POR ESPECIE ============ -->
+    <section class="impacto-section">
+        <div class="container">
+            <div class="titulo-seccion" data-aos="fade-up">
+                <h2>¿Cómo afecta a cada especie? 🐠</h2>
+                <p>Haz clic en cada especie para ver los problemas que enfrenta directamente</p>
+            </div>
+
+            <div class="accordion accordion-impacto" id="accordionImpacto" data-aos="fade-up">
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#impacto1">
+                            🐬 Vaquita Marina — <em style="font-size:0.9rem; margin-left:8px;">Phocoena sinus</em>
+                        </button>
+                    </h2>
+                    <div id="impacto1" class="accordion-collapse collapse show" data-bs-parent="#accordionImpacto">
+                        <div class="accordion-body">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div style="background:#fff5f5; border-radius:16px; padding:18px;">
+                                        <strong>🎣 Pesca ilegal (principal amenaza)</strong><br>
+                                        Las redes de enmalle usadas para cazar ilegalmente la totoaba —un pez muy
+                                        codiciado— atrapan
+                                        accidentalmente a la vaquita marina, la cual muere asfixiada al quedar enredada.
+                                        Esta es la
+                                        causa número uno de su crítica situación: hoy quedan menos de 10 individuos en
+                                        el mundo.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div style="background:#fff5f5; border-radius:16px; padding:18px;">
+                                        <strong>🏭 Contaminación y ruido marino</strong><br>
+                                        El ruido de barcos en el Golfo de California interfiere con la comunicación de
+                                        la vaquita,
+                                        que usa sonidos para orientarse y cazar. La contaminación química también
+                                        deteriora su
+                                        hábitat único en el Alto Golfo de California.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#impacto2">
+                            🐢 Tortuga Caguama — <em style="font-size:0.9rem; margin-left:8px;">Caretta caretta</em>
+                        </button>
+                    </h2>
+                    <div id="impacto2" class="accordion-collapse collapse" data-bs-parent="#accordionImpacto">
+                        <div class="accordion-body">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div style="background:#fffbf0; border-radius:16px; padding:18px;">
+                                        <strong>🛍️ Contaminación plástica</strong><br>
+                                        Las tortugas caguama confunden las bolsas de plástico con medusas —su alimento
+                                        favorito—
+                                        y las ingieren, causando obstrucciones y muerte. Se estima que más del 50% de
+                                        las tortugas
+                                        marinas han ingerido plástico alguna vez.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div style="background:#fffbf0; border-radius:16px; padding:18px;">
+                                        <strong>🏖️ Pérdida de playas de anidación</strong><br>
+                                        La construcción de hoteles y el turismo destruyen las playas donde las tortugas
+                                        ponen sus
+                                        huevos. La luz artificial desorienta a las crías recién nacidas, que en lugar de
+                                        dirigirse
+                                        al mar, van hacia las luces y mueren.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#impacto3">
+                            🐴 Caballito de Mar — <em style="font-size:0.9rem; margin-left:8px;">Hippocampus ingens</em>
+                        </button>
+                    </h2>
+                    <div id="impacto3" class="accordion-collapse collapse" data-bs-parent="#accordionImpacto">
+                        <div class="accordion-body">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div style="background:#f0fff8; border-radius:16px; padding:18px;">
+                                        <strong>🌡️ Blanqueamiento de corales</strong><br>
+                                        El caballito de mar vive agarrado a los corales y pastos marinos. Cuando el mar
+                                        se calienta
+                                        por el cambio climático, los corales se blanquean y mueren, dejando al caballito
+                                        sin hogar
+                                        ni protección frente a depredadores.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div style="background:#f0fff8; border-radius:16px; padding:18px;">
+                                        <strong>🛒 Tráfico ilegal</strong><br>
+                                        Millones de caballitos de mar son capturados cada año para venderlos como
+                                        souvenirs,
+                                        ingredientes de medicina tradicional china y para acuarios decorativos. Esta
+                                        práctica
+                                        ilegal reduce drásticamente sus poblaciones.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#impacto4">
+                            🦈 Tiburón Cornudo — <em style="font-size:0.9rem; margin-left:8px;">Heterodontus
+                                francisci</em>
+                        </button>
+                    </h2>
+                    <div id="impacto4" class="accordion-collapse collapse" data-bs-parent="#accordionImpacto">
+                        <div class="accordion-body">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div style="background:#eff6ff; border-radius:16px; padding:18px;">
+                                        <strong>🪸 Degradación de arrecifes rocosos</strong><br>
+                                        El tiburón cornudo vive en fondos rocosos del Pacífico. La contaminación marina
+                                        y el
+                                        cambio climático deterioran estos arrecifes, eliminando los erizos y moluscos de
+                                        los
+                                        que se alimenta. Sin alimento, su población no puede mantenerse.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div style="background:#eff6ff; border-radius:16px; padding:18px;">
+                                        <strong>🎣 Pesca artesanal incidental</strong><br>
+                                        Aunque no es el objetivo principal de la pesca, el tiburón cornudo queda
+                                        atrapado en
+                                        redes y palangres artesanales. Su baja tasa de reproducción hace que sea difícil
+                                        que las poblaciones se recuperen rápidamente.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#impacto5">
+                            🦭 Lobo Fino de Guadalupe — <em style="font-size:0.9rem; margin-left:8px;">Arctocephalus
+                                townsendi</em>
+                        </button>
+                    </h2>
+                    <div id="impacto5" class="accordion-collapse collapse" data-bs-parent="#accordionImpacto">
+                        <div class="accordion-body">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div style="background:#faf5ff; border-radius:16px; padding:18px;">
+                                        <strong>🗡️ Caza histórica casi los extingue</strong><br>
+                                        A finales del siglo XIX, los cazadores de pieles los llevaron al borde de la
+                                        extinción.
+                                        Se pensaron extintos por décadas hasta que una pequeña colonia fue redescubierta
+                                        en la
+                                        Isla de Guadalupe. Hoy su recuperación es lenta y frágil.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div style="background:#faf5ff; border-radius:16px; padding:18px;">
+                                        <strong>🌊 Cambio climático altera sus corrientes</strong><br>
+                                        El lobo fino depende de las corrientes frías del Pacífico para encontrar peces.
+                                        El cambio climático altera estas corrientes, haciendo que tenga que nadar más
+                                        lejos
+                                        para alimentarse, agotando su energía y afectando su reproducción.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /accordion -->
+        </div>
+    </section>
+
+    <!-- ============ TIPS CONSERVACIÓN ============ -->
+    <section class="tips-section">
+        <div class="container">
+            <div class="titulo-seccion" data-aos="fade-up">
+                <h2>¿Cómo puedes ayudar? 💪</h2>
+                <p>¡Tú también puedes ser un héroe del océano! Aquí algunas ideas</p>
+            </div>
+            <div class="row g-4" data-aos="fade-up">
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="tip-card">
+                        <span class="tip-icono">♻️</span>
+                        <h4>Recicla</h4>
+                        <p>Separa tu basura para que no llegue al océano.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="tip-card">
+                        <span class="tip-icono">🛍️</span>
+                        <h4>Sin plástico</h4>
+                        <p>Usa bolsas de tela en lugar de plástico de un solo uso.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="tip-card">
+                        <span class="tip-icono">📢</span>
+                        <h4>Difunde</h4>
+                        <p>Cuéntales a tus amigos sobre las especies en peligro.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="tip-card">
+                        <span class="tip-icono">🌊</span>
+                        <h4>Limpia playas</h4>
+                        <p>Participa en jornadas de limpieza costera con tu familia.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="tip-card">
+                        <span class="tip-icono">💧</span>
+                        <h4>Ahorra agua</h4>
+                        <p>Menos agua residual significa mares más limpios.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="tip-card">
+                        <span class="tip-icono">🐟</span>
+                        <h4>Consumo responsable</h4>
+                        <p>Elige mariscos de pesca sustentable y legal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FORMULARIO COMPROMISO ============ -->
+    <section class="compromiso-section">
+        <div class="container">
+            <h2 class="text-center mb-2" style="font-family:'Fredoka',sans-serif;font-size:2.5rem;color:#072142;"
+                data-aos="zoom-in-up">
+                Mi compromiso con el océano 🌊
+            </h2>
+            <p class="text-center mb-5" style="color:#555;" data-aos="zoom-in-up">¿Qué harás tú para proteger a estas
+                especies?</p>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <form class="p-4 shadow rounded-4 bg-white" data-aos="zoom-in-up">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Tu nombre</label>
+                            <input type="text" class="form-control form-control-lg"
+                                placeholder="Escribe tu nombre aquí...">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">¿Cuál es el problema que más te preocupa?</label>
+                            <select class="form-select form-select-lg">
+                                <option selected disabled>Elige un problema...</option>
+                                <option>🏭 Contaminación marina</option>
+                                <option>🎣 Pesca ilegal</option>
+                                <option>🌡️ Cambio climático</option>
+                                <option>🏗️ Pérdida de hábitat</option>
+                                <option>🐾 Tráfico ilegal de animales</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">¿Qué harás para ayudar al océano?</label>
+                            <textarea class="form-control" rows="4"
+                                placeholder="Escribe tu compromiso aquí... ej: Dejaré de usar popotes de plástico."></textarea>
+                        </div>
+                        <button type="submit" class="btn hero-btn btn-lg w-100">
+                            ¡Me comprometo a ayudar! 💚
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer-ocean">
+        <div class="container">
+            <div class="row gy-5">
+                <!-- Marca -->
+                <div class="col-lg-4" data-aos="fade-up">
+                    <h3 class="footer-logo">Guardianes Marinos</h3>
+                    <p class="footer-text">
+                        Proyecto dedicado a la difusión y conservación
+                        de las especies marinas de México.
+                    </p>
+                </div>
+
+                <!-- Navegación -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="150">
+                    <h4 class="footer-title">Explorar</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li><a href="../html/especies.html">Especies</a></li>
+                        <li><a href="../html/problemas.html">Problemáticas</a></li>
+                        <li><a href="../html/juegos.html">Juegos</a></li>
+                        <li><a href="../html/contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <h4 class="footer-title">Síguenos</h4>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/guard_ianesdelmar/"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100067493418860"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.youtube.com/@cuidemosnuestrohabitat9966"><i class="bi bi-youtube"></i></a>
+                        <a href="https://x.com/MarinasGuardian"><i class="bi bi-twitter-x"></i></a>
+                    </div>
+                    <p class="footer-copy">
+                        Guardianes Marinos <br>
+                        Hecho por <br> Castro Hernandez Diego <br>
+                        Rodriguez Cano Emmanuel <br>
+                        Salinas Puga David
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ============ MODALES DE PROBLEMA ============ -->
+
+    <!-- Modal Contaminación -->
+    <div class="modal fade modal-problema" id="modalContaminacion" tabindex="-1" data-problema="contaminacion">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">🏭 Contaminación marina</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-info-grid">
+                    <div class="modal-info-chip">
+                        <span>¿Qué la causa?</span>
+                        <p>Plásticos, derrames de petróleo, agroquímicos, aguas residuales y basura doméstica arrastrada
+                            por ríos hacia el océano.</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Nivel de amenaza</span>
+                        <p>🔴 Crítico — 8 millones de toneladas de plástico entran al mar cada año.</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>¿Quiénes sufren más?</span>
+                        <p>La tortuga caguama, la vaquita marina y el caballito de mar son los más afectados por la
+                            degradación del agua.</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>¿Sabías esto?</span>
+                        <p>🧴 El 80% de la contaminación marina viene de actividades en tierra firme, no de los barcos.
+                            ¡Empieza en tu casa!</p>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe width="560" height="315"
+                            src="https://www.youtube.com/embed/b8cfWYPd5iI?si=cPMhwkHlHqVYZmm1&amp;controls=0"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Pesca Ilegal -->
+    <div class="modal fade modal-problema" id="modalPesca" tabindex="-1" data-problema="pesca">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">🎣 Pesca ilegal y captura accidental</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-info-grid">
+                    <div class="modal-info-chip">
+                        <span>¿Qué la causa?</span>
+                        <p>El uso de redes de enmalle prohibidas para capturar totoaba, cuya vejiga natatoria vale
+                            más
+                            que el oro en mercados asiáticos.</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Nivel de amenaza</span>
+                        <p>🔴 Crítico — Responsable del 99% de las muertes de vaquita marina en las últimas décadas.
+                        </p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>¿Quiénes sufren más?</span>
+                        <p>La vaquita marina es la más afectada. También la tortuga caguama y el tiburón cornudo
+                            quedan
+                            atrapados incidentalmente.</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>¿Sabías esto?</span>
+                        <p>🚨 Por cada totoaba capturada ilegalmente, se estima que 1 vaquita marina muere
+                            accidentalmente en las redes.</p>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe width="560" height="315"
+                            src="https://www.youtube.com/embed/EKxH-aZsdKc?si=HIQME2Z44Q1Ynb7e&amp;controls=0"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Modal Cambio Climático -->
+    <div class="modal fade modal-problema" id="modalClima" tabindex="-1" data-problema="clima">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">🌡️ Cambio climático</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-info-grid">
+                    <div class="modal-info-chip">
+                        <span>¿Qué lo causa?</span>
+                        <p>La quema de combustibles fósiles y la deforestación producen gases de efecto invernadero
+                            que
+                            calientan la Tierra.</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Nivel de amenaza</span>
+                        <p>🟠 Alto — El 50% de los arrecifes de coral del mundo han desaparecido en los últimos 30
+                            años.
+                        </p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>¿Quiénes sufren más?</span>
+                        <p>El caballito de mar y el tiburón cornudo pierden sus arrecifes. El lobo fino pierde sus
+                            corrientes frías con alimento.</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>¿Sabías esto?</span>
+                        <p>🌡️ Un aumento de solo 1°C en la temperatura del mar es suficiente para matar a miles de
+                            corales. ¡Cada grado importa!</p>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe width="560" height="315"
+                            src="https://www.youtube.com/embed/K7MzGe6OSs0?si=m5aM1P1KfQPI5JFG&amp;controls=0"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Modal Pérdida de Hábitat -->
+    <div class="modal fade modal-problema" id="modalHabitat" tabindex="-1" data-problema="habitat">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">🏗️ Pérdida de hábitat</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-info-grid">
+                    <div class="modal-info-chip">
+                        <span>¿Qué la causa?</span>
+                        <p>La construcción de hoteles, puertos, carreteras y zonas turísticas en áreas costeras
+                            destruye
+                            manglares, arrecifes y playas.</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Nivel de amenaza</span>
+                        <p>🟠 Alto — México ha perdido más del 30% de sus manglares en las últimas décadas debido al
+                            desarrollo urbano.</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>¿Quiénes sufren más?</span>
+                        <p>La tortuga caguama pierde sus playas de anidación. El caballito de mar pierde los
+                            manglares
+                            donde se refugia.</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>¿Sabías esto?</span>
+                        <p>💡 La contaminación lumínica en playas desorientan a las crías de tortuga recién nacidas
+                            que
+                            buscan el mar y mueren.</p>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe width="560" height="315"
+                            src="https://www.youtube.com/embed/rMhN30Gmok8?si=1e65xXnU7LXDCh9Q&amp;controls=0"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Modal Tráfico Ilegal -->
+    <div class="modal fade modal-problema" id="modalTrafico" tabindex="-1" data-problema="trafico">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">🐾 Tráfico ilegal de animales</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-info-grid">
+                    <div class="modal-info-chip">
+                        <span>¿Qué lo causa?</span>
+                        <p>La demanda de animales para mascotas exóticas, medicina tradicional, decoración y
+                            souvenirs
+                            impulsa el comercio ilegal.</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>Nivel de amenaza</span>
+                        <p>🟡 Moderado-Alto — El tráfico de fauna es el 3er mercado ilegal más grande del mundo,
+                            valorado en miles de millones.</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>¿Quiénes sufren más?</span>
+                        <p>El caballito de mar es capturado masivamente. El lobo fino de Guadalupe casi se extingue
+                            por
+                            la caza de su piel.</p>
+                    </div>
+                    <div class="modal-info-chip">
+                        <span>¿Sabías esto?</span>
+                        <p>🐴 Se capturan más de 37 millones de caballitos de mar al año en todo el mundo para uso
+                            en
+                            medicina y acuarios.</p>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe width="560" height="315"
+                            src="https://www.youtube.com/embed/enYf53GkONY?si=J4SPh9oTk3kWWRxi&amp;controls=0"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- ============ SCRIPTS ============ -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        /* ===== FILTRO DE PROBLEMAS ===== */
+        function filtrarProblema(tipo, btn) {
+            document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('activo'));
+            btn.classList.add('activo');
+
+            const items = document.querySelectorAll('.problema-item');
+            items.forEach(item => {
+                if (tipo === 'todos' || item.dataset.tipo === tipo) {
+                    item.style.display = '';
+                    item.style.animation = 'fadeInUp 0.4s ease both';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        /* ===== DETENER VIDEO AL CERRAR MODAL ===== */
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('hidden.bs.modal', () => {
+                const iframe = modal.querySelector('iframe');
+                if (iframe) {
+                    const src = iframe.src;
+                    iframe.src = '';
+                    iframe.src = src;
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

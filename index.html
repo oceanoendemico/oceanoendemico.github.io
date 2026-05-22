@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Océano Endémico</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- ANIMATE.CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <!-- AOS Animate On Scroll -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Guardianes Marinos</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="html/especies.html">Especies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="html/problemas.html">Problemas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="html/juegos.html">Juegos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="html/contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="html/ayuda.html">Ayuda</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="container hero-content">
+            <div class="hero-text" data-aos="fade-right">
+                <span class="badge-ocean">🌎 Biodiversidad marina mexicana</span>
+                <h1>Explora el océano de México</h1>
+                <p>Descubre especies increíbles, ecosistemas marinos y aprende cómo proteger la vida del océano.</p>
+                <div class="hero-buttons">
+                    <a href="html/especies.html" class="btn btn-warning btn-lg">Descubrir especies</a>
+                    <a href="#galeria" class="btn btn-outline-light btn-lg">Ver galería</a>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-box">
+                        <h3>120+</h3>
+                        <p>Especies</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>25</h3>
+                        <p>Ecosistemas</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>80%</h3>
+                        <p>Protección</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-images" data-aos="zoom-in" data-aos-delay="300">
+                <img src="img/tortuga-flat-2.png" class="img1 floating" alt="Tortuga marina">
+
+                <img src="img/vaquita-flat-2.png" class="img2 floating2" alt="Vaquita marina">
+
+                <img src="img/manati-flat-2.png" class="img3 floating3" alt="Lobo marino">
+
+                <img src="img/coral-alce-flat-2.png" class="img4 floating" alt="">
+
+                <img src="img/ballena-flat.png" class="img5 floating" alt="">
+            </div>
+        </div>
+    </header>
+
+
+
+    <!-- CARRUSEL BOOTSTRAP-->
+    <section id="galeria" class="carousel-section galeria-marina">
+        <div class="container">
+            <div id="carouselExampleCaptions" class="carousel slide custom-carousel" data-aos="fade-up">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                        aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"
+                        aria-label="Slide 5"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="img/manati.jpg" class="d-block w-100" alt="">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Manatí del Caribe (Trichechus manatus manatus)</h5>
+                            <p>El manatí tiene presencia en estados como Quintana Roo, ahí se le protege dentro del
+                                “Santuario del Manatí”, un área natural ubicada cerca de Chetumal.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/coral-alce.jpg" class="d-block w-100" alt="">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Coral cuerno de alce (Acropora palmata)</h5>
+                            <p>Gracias al coral cuerno de alce diversos peces encuentran un hogar, además de que estos
+                                organismos protegen a las costas durante las tormentas.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/tiburon-ballena.webp" class="d-block w-100" alt="">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Tiburón ballena (Rhincodon typus).</h5>
+                            <p>Considerado pez más grande del mundo, es también un gigante amable que llega a superar
+                                los 12 metros de largo,presentes en la cálida región del Caribe.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/tortuga.jpg" class="d-block w-100" alt="">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Tortuga caguama (Caretta caretta)</h5>
+                            <p>La tortuga caguama habita en distintas zonas del océano Pacífico y el Golfo de México. En
+                                México, varias playas son protegidas para conservar sus áreas de anidación y evitar
+                                amenazas como la contaminación y la pesca incidental.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/vaquita-marina.jpg" class="d-block w-100" alt="">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Vaquita marina (Phocoena sinus)</h5>
+                            <p>La vaquita marina es una especie endémica del Alto Golfo de California y se encuentra en
+                                peligro crítico de extinción. Su principal amenaza es la pesca ilegal con redes de
+                                enmalle, por lo que existen zonas protegidas para intentar conservar a esta especie
+                                única de México.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- GALERÍA -->
+    <section class="galeria-marina">
+        <div class="container">
+            <div class="titulo-galeria" data-aos="fade-up">
+                <h2>Peligros que enfrentan</h2>
+                <p>Conoce las razones de su posible extinción.</p>
+            </div>
+
+            <div class="galeria-diagonal">
+                <div class="card-mar" data-aos="fade-up">
+                    <img src="img/Contaminacion-oceano.jpg">
+                    <div class="info-mar">
+                        <h3>Contaminación marina</h3>
+                        <p>Los residuos plásticos y químicos dañan gravemente la vida marina.</p>
+                    </div>
+                </div>
+                <div class="card-mar" data-aos="fade-down" data-aos-delay="100">
+                    <img src="img/Pesca-excesiva.webp">
+                    <div class="info-mar">
+                        <h3>Pesca excesiva</h3>
+                        <p>La captura descontrolada reduce la población de muchas especies.</p>
+                    </div>
+                </div>
+                <div class="card-mar" data-aos="fade-up" data-aos-delay="200">
+                    <img src="img/Cambio-climatico.webp">
+                    <div class="info-mar">
+                        <h3>Cambio climático</h3>
+                        <p>El aumento de temperatura altera los ecosistemas marinos.</p>
+                    </div>
+                </div>
+                <div class="card-mar" data-aos="fade-down" data-aos-delay="300">
+                    <img src="img/Destruccion-habitats.jpg">
+                    <div class="info-mar">
+                        <h3>Destrucción del hábitat</h3>
+                        <p>Las construcciones y el turismo afectan arrecifes y manglares.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TARJETAS -->
+
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in">Especies en peligro de extinción</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                    <div class="card h-100">
+                        <img src="img/Vaquita-flat.jpeg" class="card-img-top">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Vaquita marina</h3>
+                            <p class="card-text">La vaquita marina es el mamífero marino más pequeño del
+                                mundo y vive únicamente en el Golfo de California. Actualmente se encuentra
+                                en peligro crítico de extinción debido a la pesca ilegal y las redes de pesca.</p>
+                            <button class="btn hero-btn btn-lg" data-bs-toggle="modal"
+                                data-bs-target="#modalVaquita">Ver más</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card h-100">
+                        <img src="img/Tortuga-flat.jpeg" class="card-img-top">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Tortuga caguama</h3>
+                            <p class="card-text">La tortuga caguama es una gran viajera de los océanos.
+                                Se alimenta de medusas y crustáceos, pero enfrenta amenazas como la contaminación
+                                marina, el plástico y la destrucción de playas.</p>
+                            <button class="btn hero-btn btn-lg" data-bs-toggle="modal"
+                                data-bs-target="#modalTortuga">Ver más</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card h-100">
+                        <img src="img/Caballito-flat.jpeg" class="card-img-top">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Caballito de mar</h3>
+                            <p class="card-text">El caballito de mar del Pacífico es uno de los caballitos de
+                                mar más grandes del mundo. Vive entre arrecifes y manglares, pero la contaminación
+                                y el comercio ilegal amenazan su supervivencia.</p>
+                            <button class="btn hero-btn btn-lg" data-bs-toggle="modal"
+                                data-bs-target="#modalCaballito">Ver más</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="card h-100">
+                        <img src="img/Tiburon-flat.jpeg" class="card-img-top">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Tiburón cornudo</h3>
+                            <p class="card-text">El tiburón cornudo habita en aguas del Pacífico mexicano y se
+                                caracteriza por las pequeñas protuberancias sobre sus ojos. Es una especie nocturna
+                                que ayuda a mantener el equilibrio del ecosistema marino.</p>
+                            <button class="btn hero-btn btn-lg" data-bs-toggle="modal"
+                                data-bs-target="#modalTiburon">Ver más</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="card h-100">
+                        <img src="img/Lobo-flat.jpeg" class="card-img-top">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Lobo fino de Guadalupe</h3>
+                            <p class="card-text">El lobo fino de Guadalupe vive en islas mexicanas del océano
+                                Pacífico. Aunque estuvo cerca de desaparecer por la caza excesiva, actualmente
+                                sigue protegido debido a su vulnerabilidad.</p>
+                            <button class="btn hero-btn btn-lg" data-bs-toggle="modal" data-bs-target="#modalLobo">Ver
+                                más</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL -->
+
+    <div class="modal fade" id="modalVaquita" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5">Vaquita marina</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/4ryOcRLQz-A?enablejsapi=1"
+                            title="Video Vaquita marina" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalTortuga" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5">Tortuga caguama</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/hzYImfy8SX0?enablejsapi=1"
+                            title="Video Tortuga Caguama" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalCaballito" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5">Caballito de mar</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/NF8JTsow3c0?enablejsapi=1"
+                            title="Video Caballito de Mar" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalTiburon" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5">Tiburon cornudo</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/wbD7svZNITw?enablejsapi=1"
+                            title="Video Tiburon cornudo" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalLobo" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5">Lobo fino de Guadalupe</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/Es9o1HemkIU?enablejsapi=1"
+                            title="Video Lobo Fino de Guadalupe" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PROBLEMÁTICAS -->
+    <section class="problemas-section">
+        <div class="container">
+            <div class="problemas-titulo" data-aos="fade-up">
+                <h2>Problemáticas ambientales</h2>
+                <p>Factores que ponen en riesgo a las especies marinas de México.</p>
+            </div>
+            <div class="accordion accordion-flush custom-accordion" id="accordionFlushExample" data-aos="fade-up">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            Contaminación del océano
+                        </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse"
+                        data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            El plástico, petróleo, químicos y aguas residuales contaminan el hábitat marino, afectando
+                            la salud y
+                            reproducción de muchas especies endémicas.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            Pesca excesiva y captura accidental
+                        </button>
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                        data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            Algunas especies son pescadas en grandes cantidades o quedan atrapadas accidentalmente en
+                            redes,
+                            reduciendo sus poblaciones.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseThree" aria-expanded="false"
+                            aria-controls="flush-collapseThree">
+                            Cambio climático
+                        </button>
+                    </h2>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse"
+                        data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            El aumento de la temperatura del mar y la acidificación del océano alteran los ecosistemas
+                            marinos
+                            y destruyen arrecifes y zonas de alimentación.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseFour" aria-expanded="false"
+                            aria-controls="flush-collapseFour">
+                            Destrucción de hábitats naturales
+                        </button>
+                    </h2>
+                    <div id="flush-collapseFour" class="accordion-collapse collapse"
+                        data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            La urbanización costera, el turismo y la construcción dañan manglares, arrecifes y otras
+                            áreas
+                            esenciales para la supervivencia de las especies.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FORMULARIO -->
+
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="zoom-in-up">Compromiso ecológico</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <form class="p-4 shadow rounded-4 bg-white" data-aos="zoom-in-up">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">¿Cómo ayudarás al océano?</label>
+                            <textarea class="form-control" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn hero-btn btn-lg w-100">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer-ocean">
+        <div class="container">
+            <div class="row gy-5">
+                <!-- Marca -->
+                <div class="col-lg-4" data-aos="fade-up">
+                    <h3 class="footer-logo">Guardianes Marinos</h3>
+                    <p class="footer-text">
+                        Proyecto dedicado a la difusión y conservación
+                        de las especies marinas de México.
+                    </p>
+                </div>
+
+                <!-- Navegación -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="150">
+                    <h4 class="footer-title">Explorar</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="html/especies.html">Especies</a></li>
+                        <li><a href="html/problemas.html">Problemáticas</a></li>
+                        <li><a href="html/juegos.html">Juegos</a></li>
+                        <li><a href="html/contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <h4 class="footer-title">Síguenos</h4>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/guard_ianesdelmar/"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100067493418860"><i
+                                class="bi bi-facebook"></i></a>
+                        <a href="https://www.youtube.com/@cuidemosnuestrohabitat9966"><i class="bi bi-youtube"></i></a>
+                        <a href="https://x.com/MarinasGuardian"><i class="bi bi-twitter-x"></i></a>
+                    </div>
+                    <p class="footer-copy">
+                        Guardianes Marinos <br>
+                        Hecho por <br> Castro Hernandez Diego <br>
+                        Rodriguez Cano Emmanuel <br>
+                        Salinas Puga David
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/main.js"></script>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        AOS.init({
+            duration: 1200,
+            once: true
+        });
+    </script>
+</body>
+
+</html>
